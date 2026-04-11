@@ -1,0 +1,181 @@
+{
+  "header": {
+    "nav": {
+      "sales": "Sales",
+      "rental": "Rental",
+      "projects": "Projects"
+    },
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "search": {
+      "title": "Find your ideal property",
+      "subtitle": "Search by location, type or features",
+      "placeholder": "Enter address, neighborhood or city...",
+      "button": "Search"
+    },
+    "tabs": {
+      "venda": "Sale",
+      "aluguel": "Rental",
+      "projeto": "Project"
+    },
+    "sections": {
+      "sale": {
+        "title": "Properties for Sale",
+        "desc": "The best properties selected for you"
+      },
+      "rental": {
+        "title": "Properties for Rent",
+        "desc": "Find your next home with the best conditions"
+      },
+      "projects": {
+        "title": "Featured Projects",
+        "desc": "Exclusive developments with special conditions"
+      }
+    },
+    "viewAll": "View all",
+    "badge": {
+      "sale": "Sale",
+      "rental": "Rental",
+      "project": "Project"
+    },
+    "specs": {
+      "bedrooms": "bedrooms",
+      "bathrooms": "bathrooms",
+      "parking": "parking spots"
+    },
+    "project": {
+      "completed": "{{pct}}% completed",
+      "unitsAvailable": "units available",
+      "delivery": "Delivery {{date}}",
+      "startingFrom": "Starting from {{price}}"
+    }
+  },
+  "footer": {
+    "tagline": "Your digital real estate agency in Balneário Camboriú. Unique experience in buying, selling and renting properties.",
+    "navigation": "Navigation",
+    "searchProperties": "Search Properties",
+    "institutional": "Institutional",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "sellProperty": "Sell your Property",
+    "blog": "Blog",
+    "contact": "Contact",
+    "copyright": "All rights reserved"
+  },
+  "search": {
+    "back": "Back",
+    "placeholder": "Address, neighborhood or city...",
+    "filters": "Filters",
+    "tabs": {
+      "venda": "Sale",
+      "aluguel": "Rental",
+      "projeto": "Project"
+    },
+    "filterLabels": {
+      "propertyType": "Property type",
+      "city": "City",
+      "bedroomsMin": "Bedrooms (min.)",
+      "suitesMin": "Suites (min.)",
+      "bathroomsMin": "Bathrooms (min.)",
+      "parkingMin": "Parking (min.)",
+      "priceRange": "Price range",
+      "area": "Area (m²)",
+      "condition": "Condition",
+      "furnishing": "Furnishing",
+      "floor": "Floor",
+      "rules": "Rules",
+      "propertyFeatures": "Property features",
+      "amenities": "Leisure & condo"
+    },
+    "categories": {
+      "todos": "All",
+      "apartamento": "Apartment",
+      "casa": "House",
+      "cobertura": "Penthouse",
+      "studio": "Studio",
+      "loft": "Loft",
+      "comercial": "Commercial"
+    },
+    "cities": {
+      "todas": "All"
+    },
+    "conditions": {
+      "todos": "All",
+      "novo": "New",
+      "pronto": "Ready to move",
+      "em_construcao": "Under construction"
+    },
+    "furnishing": {
+      "todos": "All",
+      "mobiliado": "Furnished",
+      "semi_mobiliado": "Semi-furnished",
+      "sem_mobilia": "Unfurnished"
+    },
+    "floors": {
+      "todos": "All",
+      "baixo": "Low",
+      "medio": "Mid",
+      "alto": "High",
+      "cobertura": "Penthouse"
+    },
+    "rules": {
+      "pets": "Pets allowed",
+      "financing": "Financing accepted"
+    },
+    "features": {
+      "vista_mar": "Ocean view",
+      "frente_mar": "Beachfront",
+      "piscina": "Pool",
+      "piscina_privativa": "Private pool",
+      "jacuzzi": "Jacuzzi/Spa",
+      "churrasqueira": "BBQ grill",
+      "varanda": "Balcony",
+      "varanda_gourmet": "Gourmet balcony",
+      "home_office": "Home office",
+      "closet": "Walk-in closet",
+      "lareira": "Fireplace",
+      "ar_condicionado": "Air conditioning",
+      "jardim": "Garden"
+    },
+    "amenities": {
+      "academia": "Gym",
+      "sauna": "Sauna",
+      "salao_festas": "Party room",
+      "playground": "Playground",
+      "pet_place": "Pet place",
+      "portaria_24h": "24h security",
+      "elevador": "Elevator",
+      "elevador_privativo": "Private elevator",
+      "concierge": "Concierge",
+      "heliponto": "Helipad"
+    },
+    "min": "Min.",
+    "max": "Max.",
+    "to": "to",
+    "all": "All",
+    "clearFilters": "Clear",
+    "viewResults": "View {{count}} result",
+    "viewResults_plural": "View {{count}} results",
+    "resultsCount": "<strong>{{count}}</strong> {{type}} found",
+    "resultsType": {
+      "project": "projects",
+      "property": "properties"
+    },
+    "noResults": {
+      "title": "No results",
+      "desc": "Try adjusting the filters or searching another area"
+    },
+    "specs": {
+      "rooms": "bd",
+      "parking": "pk",
+      "units": "units"
+    },
+    "startingFrom": "Starting from {{price}}",
+    "perMonth": "/mo"
+  },
+  "common": {
+    "perMonth": "/mo"
+  }
+}

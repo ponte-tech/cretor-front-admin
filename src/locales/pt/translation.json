@@ -1,0 +1,181 @@
+{
+  "header": {
+    "nav": {
+      "sales": "Vendas",
+      "rental": "Aluguel",
+      "projects": "Projetos"
+    },
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "home": {
+    "search": {
+      "title": "Encontre o imóvel ideal",
+      "subtitle": "Busque por localização, tipo ou características",
+      "placeholder": "Digite o endereço, bairro ou cidade...",
+      "button": "Buscar"
+    },
+    "tabs": {
+      "venda": "Venda",
+      "aluguel": "Aluguel",
+      "projeto": "Projeto"
+    },
+    "sections": {
+      "sale": {
+        "title": "Imóveis à Venda",
+        "desc": "Os melhores imóveis selecionados para você"
+      },
+      "rental": {
+        "title": "Imóveis para Aluguel",
+        "desc": "Encontre seu próximo lar com as melhores condições"
+      },
+      "projects": {
+        "title": "Projetos em Destaque",
+        "desc": "Empreendimentos exclusivos com condições especiais"
+      }
+    },
+    "viewAll": "Ver todos",
+    "badge": {
+      "sale": "Venda",
+      "rental": "Aluguel",
+      "project": "Projeto"
+    },
+    "specs": {
+      "bedrooms": "quartos",
+      "bathrooms": "banhos",
+      "parking": "vagas"
+    },
+    "project": {
+      "completed": "{{pct}}% concluído",
+      "unitsAvailable": "unid. disponíveis",
+      "delivery": "Entrega {{date}}",
+      "startingFrom": "A partir de {{price}}"
+    }
+  },
+  "footer": {
+    "tagline": "Sua imobiliária digital em Balneário Camboriú. Experiência única em compra, venda e aluguel de imóveis.",
+    "navigation": "Navegação",
+    "searchProperties": "Buscar Imóveis",
+    "institutional": "Institucional",
+    "aboutUs": "A Imobiliária",
+    "contactUs": "Fale Conosco",
+    "sellProperty": "Venda seu Imóvel",
+    "blog": "Blog",
+    "contact": "Contato",
+    "copyright": "Todos os direitos reservados"
+  },
+  "search": {
+    "back": "Voltar",
+    "placeholder": "Endereço, bairro ou cidade...",
+    "filters": "Filtros",
+    "tabs": {
+      "venda": "Venda",
+      "aluguel": "Aluguel",
+      "projeto": "Projeto"
+    },
+    "filterLabels": {
+      "propertyType": "Tipo de imóvel",
+      "city": "Cidade",
+      "bedroomsMin": "Quartos (mín.)",
+      "suitesMin": "Suítes (mín.)",
+      "bathroomsMin": "Banheiros (mín.)",
+      "parkingMin": "Vagas (mín.)",
+      "priceRange": "Faixa de preço",
+      "area": "Área (m²)",
+      "condition": "Condição",
+      "furnishing": "Mobília",
+      "floor": "Andar",
+      "rules": "Regras",
+      "propertyFeatures": "Características do imóvel",
+      "amenities": "Lazer e condomínio"
+    },
+    "categories": {
+      "todos": "Todos",
+      "apartamento": "Apartamento",
+      "casa": "Casa",
+      "cobertura": "Cobertura",
+      "studio": "Studio",
+      "loft": "Loft",
+      "comercial": "Comercial"
+    },
+    "cities": {
+      "todas": "Todas"
+    },
+    "conditions": {
+      "todos": "Todos",
+      "novo": "Novo",
+      "pronto": "Pronto p/ morar",
+      "em_construcao": "Em construção"
+    },
+    "furnishing": {
+      "todos": "Todos",
+      "mobiliado": "Mobiliado",
+      "semi_mobiliado": "Semi-mobiliado",
+      "sem_mobilia": "Sem mobília"
+    },
+    "floors": {
+      "todos": "Todos",
+      "baixo": "Baixo",
+      "medio": "Médio",
+      "alto": "Alto",
+      "cobertura": "Cobertura"
+    },
+    "rules": {
+      "pets": "Aceita pets",
+      "financing": "Aceita financiamento"
+    },
+    "features": {
+      "vista_mar": "Vista mar",
+      "frente_mar": "Frente mar",
+      "piscina": "Piscina",
+      "piscina_privativa": "Piscina privativa",
+      "jacuzzi": "Jacuzzi/Spa",
+      "churrasqueira": "Churrasqueira",
+      "varanda": "Varanda",
+      "varanda_gourmet": "Varanda gourmet",
+      "home_office": "Home office",
+      "closet": "Closet",
+      "lareira": "Lareira",
+      "ar_condicionado": "Ar-condicionado",
+      "jardim": "Jardim"
+    },
+    "amenities": {
+      "academia": "Academia",
+      "sauna": "Sauna",
+      "salao_festas": "Salão de festas",
+      "playground": "Playground",
+      "pet_place": "Pet place",
+      "portaria_24h": "Portaria 24h",
+      "elevador": "Elevador",
+      "elevador_privativo": "Elevador privativo",
+      "concierge": "Concierge",
+      "heliponto": "Heliponto"
+    },
+    "min": "Mín.",
+    "max": "Máx.",
+    "to": "até",
+    "all": "Todos",
+    "clearFilters": "Limpar",
+    "viewResults": "Ver {{count}} resultado",
+    "viewResults_plural": "Ver {{count}} resultados",
+    "resultsCount": "<strong>{{count}}</strong> {{type}} encontrados",
+    "resultsType": {
+      "project": "projetos",
+      "property": "imóveis"
+    },
+    "noResults": {
+      "title": "Nenhum resultado",
+      "desc": "Tente ajustar os filtros ou buscar por outra região"
+    },
+    "specs": {
+      "rooms": "qts",
+      "parking": "vg",
+      "units": "unid."
+    },
+    "startingFrom": "A partir de {{price}}",
+    "perMonth": "/mês"
+  },
+  "common": {
+    "perMonth": "/mês"
+  }
+}

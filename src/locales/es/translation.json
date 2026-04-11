@@ -1,0 +1,181 @@
+{
+  "header": {
+    "nav": {
+      "sales": "Ventas",
+      "rental": "Alquiler",
+      "projects": "Proyectos"
+    },
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "home": {
+    "search": {
+      "title": "Encuentra la propiedad ideal",
+      "subtitle": "Busca por ubicación, tipo o características",
+      "placeholder": "Ingrese dirección, barrio o ciudad...",
+      "button": "Buscar"
+    },
+    "tabs": {
+      "venda": "Venta",
+      "aluguel": "Alquiler",
+      "projeto": "Proyecto"
+    },
+    "sections": {
+      "sale": {
+        "title": "Inmuebles en Venta",
+        "desc": "Las mejores propiedades seleccionadas para ti"
+      },
+      "rental": {
+        "title": "Inmuebles en Alquiler",
+        "desc": "Encuentra tu próximo hogar con las mejores condiciones"
+      },
+      "projects": {
+        "title": "Proyectos Destacados",
+        "desc": "Emprendimientos exclusivos con condiciones especiales"
+      }
+    },
+    "viewAll": "Ver todos",
+    "badge": {
+      "sale": "Venta",
+      "rental": "Alquiler",
+      "project": "Proyecto"
+    },
+    "specs": {
+      "bedrooms": "habitaciones",
+      "bathrooms": "baños",
+      "parking": "plazas"
+    },
+    "project": {
+      "completed": "{{pct}}% completado",
+      "unitsAvailable": "unidades disponibles",
+      "delivery": "Entrega {{date}}",
+      "startingFrom": "A partir de {{price}}"
+    }
+  },
+  "footer": {
+    "tagline": "Tu inmobiliaria digital en Balneário Camboriú. Experiencia única en compra, venta y alquiler de inmuebles.",
+    "navigation": "Navegación",
+    "searchProperties": "Buscar Inmuebles",
+    "institutional": "Institucional",
+    "aboutUs": "La Inmobiliaria",
+    "contactUs": "Contáctenos",
+    "sellProperty": "Venda su Inmueble",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "copyright": "Todos los derechos reservados"
+  },
+  "search": {
+    "back": "Volver",
+    "placeholder": "Dirección, barrio o ciudad...",
+    "filters": "Filtros",
+    "tabs": {
+      "venda": "Venta",
+      "aluguel": "Alquiler",
+      "projeto": "Proyecto"
+    },
+    "filterLabels": {
+      "propertyType": "Tipo de inmueble",
+      "city": "Ciudad",
+      "bedroomsMin": "Habitaciones (mín.)",
+      "suitesMin": "Suites (mín.)",
+      "bathroomsMin": "Baños (mín.)",
+      "parkingMin": "Plazas (mín.)",
+      "priceRange": "Rango de precio",
+      "area": "Área (m²)",
+      "condition": "Condición",
+      "furnishing": "Mobiliario",
+      "floor": "Piso",
+      "rules": "Reglas",
+      "propertyFeatures": "Características del inmueble",
+      "amenities": "Ocio y condominio"
+    },
+    "categories": {
+      "todos": "Todos",
+      "apartamento": "Apartamento",
+      "casa": "Casa",
+      "cobertura": "Penthouse",
+      "studio": "Studio",
+      "loft": "Loft",
+      "comercial": "Comercial"
+    },
+    "cities": {
+      "todas": "Todas"
+    },
+    "conditions": {
+      "todos": "Todos",
+      "novo": "Nuevo",
+      "pronto": "Listo p/ habitar",
+      "em_construcao": "En construcción"
+    },
+    "furnishing": {
+      "todos": "Todos",
+      "mobiliado": "Amueblado",
+      "semi_mobiliado": "Semi-amueblado",
+      "sem_mobilia": "Sin muebles"
+    },
+    "floors": {
+      "todos": "Todos",
+      "baixo": "Bajo",
+      "medio": "Medio",
+      "alto": "Alto",
+      "cobertura": "Penthouse"
+    },
+    "rules": {
+      "pets": "Acepta mascotas",
+      "financing": "Acepta financiamiento"
+    },
+    "features": {
+      "vista_mar": "Vista al mar",
+      "frente_mar": "Frente al mar",
+      "piscina": "Piscina",
+      "piscina_privativa": "Piscina privada",
+      "jacuzzi": "Jacuzzi/Spa",
+      "churrasqueira": "Parrilla",
+      "varanda": "Balcón",
+      "varanda_gourmet": "Balcón gourmet",
+      "home_office": "Home office",
+      "closet": "Vestidor",
+      "lareira": "Chimenea",
+      "ar_condicionado": "Aire acondicionado",
+      "jardim": "Jardín"
+    },
+    "amenities": {
+      "academia": "Gimnasio",
+      "sauna": "Sauna",
+      "salao_festas": "Salón de fiestas",
+      "playground": "Playground",
+      "pet_place": "Pet place",
+      "portaria_24h": "Seguridad 24h",
+      "elevador": "Ascensor",
+      "elevador_privativo": "Ascensor privado",
+      "concierge": "Concierge",
+      "heliponto": "Helipuerto"
+    },
+    "min": "Mín.",
+    "max": "Máx.",
+    "to": "hasta",
+    "all": "Todos",
+    "clearFilters": "Limpiar",
+    "viewResults": "Ver {{count}} resultado",
+    "viewResults_plural": "Ver {{count}} resultados",
+    "resultsCount": "<strong>{{count}}</strong> {{type}} encontrados",
+    "resultsType": {
+      "project": "proyectos",
+      "property": "inmuebles"
+    },
+    "noResults": {
+      "title": "Sin resultados",
+      "desc": "Intenta ajustar los filtros o buscar en otra región"
+    },
+    "specs": {
+      "rooms": "hab.",
+      "parking": "plz",
+      "units": "unid."
+    },
+    "startingFrom": "A partir de {{price}}",
+    "perMonth": "/mes"
+  },
+  "common": {
+    "perMonth": "/mes"
+  }
+}
