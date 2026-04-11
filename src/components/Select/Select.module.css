@@ -1,0 +1,256 @@
+/* ========== WRAPPER ========== */
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* ========== CONTROL ========== */
+.control {
+  position: relative;
+  width: 100%;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(30, 24, 18, 0.4) 0%, rgba(15, 12, 8, 0.6) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  user-select: none;
+}
+
+.control:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.control:focus-visible,
+.control.open {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.control.error {
+  border-color: #ED2E31;
+}
+
+.control.error:focus-visible,
+.control.error.open {
+  box-shadow: 0 0 0 3px rgba(237, 46, 49, 0.1);
+}
+
+.control.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========== LABEL (floating) ========== */
+.label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #B8A898;
+  font-size: 16px;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 52px);
+}
+
+.label.labelFloating {
+  top: 8px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #F5C563;
+}
+
+/* ========== VALUE ========== */
+.value {
+  position: absolute;
+  left: 16px;
+  bottom: 8px;
+  right: 40px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+/* ========== ARROW ========== */
+.arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #B8A898;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow.arrowOpen {
+  transform: translateY(-50%) rotate(180deg);
+  color: #D4AF37;
+}
+
+/* ========== DROPDOWN ========== */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  max-height: 220px;
+  overflow-y: auto;
+  background: rgba(22, 18, 14, 0.98);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 6px;
+  list-style: none;
+  margin: 0;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  animation: dropIn 0.2s ease;
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.4);
+}
+
+/* ========== OPTION ========== */
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #E2E8F0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.option.optionHighlighted {
+  background: rgba(212, 175, 55, 0.08);
+  color: #FFFFFF;
+}
+
+.option.optionSelected {
+  color: #F5C563;
+  font-weight: 500;
+}
+
+.option.optionSelected.optionHighlighted {
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  color: #D4AF37;
+}
+
+/* ========== ERROR ========== */
+.errorMessage {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ED2E31;
+  padding-left: 4px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .control {
+    height: 56px;
+  }
+
+  .label {
+    font-size: 14px;
+    left: 14px;
+    max-width: calc(100% - 48px);
+  }
+
+  .label.labelFloating {
+    font-size: 11px;
+  }
+
+  .value {
+    font-size: 14px;
+    left: 14px;
+    right: 36px;
+  }
+
+  .arrow {
+    right: 14px;
+  }
+
+  .dropdown {
+    max-height: 200px;
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .option {
+    padding: 12px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  .errorMessage {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .control {
+    height: 52px;
+  }
+
+  .label {
+    font-size: 13px;
+    left: 12px;
+  }
+
+  .value {
+    font-size: 13px;
+    left: 12px;
+  }
+
+  .arrow {
+    right: 12px;
+  }
+}

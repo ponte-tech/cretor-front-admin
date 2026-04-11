@@ -1,0 +1,240 @@
+.dashboard {
+  padding: 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+}
+
+.pageSubtitle {
+  font-size: 16px;
+  color: #B8A898;
+  margin: 0;
+}
+
+.primaryButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #D4AF37 0%, #F5C563 100%);
+  color: #0a0604;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Content Grid */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.activityCard,
+.actionsCard {
+  height: fit-content;
+}
+
+/* Activity List */
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.activityItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.activityAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0604;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.activityContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.activityText {
+  font-size: 14px;
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
+
+.activityText strong {
+  font-weight: 600;
+  color: #F5C563;
+}
+
+.activityText span {
+  color: #B8A898;
+}
+
+.activityTime {
+  font-size: 12px;
+  color: #B8A898;
+  opacity: 0.7;
+}
+
+/* Actions List */
+.actionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(30, 24, 18, 0.3) 0%, rgba(15, 12, 8, 0.5) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 12px;
+  color: #FFFFFF;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateX(4px);
+  background: linear-gradient(180deg, rgba(30, 24, 18, 0.4) 0%, rgba(15, 12, 8, 0.6) 100%);
+}
+
+.actionButton svg {
+  color: #F5C563;
+  flex-shrink: 0;
+}
+
+.actionButton div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.actionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.actionDesc {
+  font-size: 12px;
+  color: #B8A898;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 24px 16px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .primaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+  }
+
+  .pageSubtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    padding: 20px 16px;
+  }
+
+  .pageHeader {
+    margin-bottom: 24px;
+  }
+
+  .statsGrid {
+    margin-bottom: 24px;
+  }
+
+  .contentGrid {
+    gap: 20px;
+  }
+
+  .activityItem {
+    gap: 12px;
+  }
+
+  .activityAvatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .actionButton {
+    padding: 14px;
+    gap: 12px;
+  }
+}

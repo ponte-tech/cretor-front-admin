@@ -1,0 +1,570 @@
+.container {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #F5C563;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #B8A898;
+  margin: 0;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filterGroup {
+  width: 100%;
+}
+
+.clienteInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.clienteAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #D4AF37;
+  flex-shrink: 0;
+}
+
+.clienteAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clienteDetails h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #F5C563;
+  margin: 0 0 8px 0;
+}
+
+.clienteDetails p {
+  font-size: 14px;
+  color: #B8A898;
+  margin: 4px 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: #B8A898;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab:hover {
+  color: #F5C563;
+}
+
+.tab svg {
+  flex-shrink: 0;
+}
+
+.tabActive {
+  color: #F5C563;
+  border-bottom-color: #D4AF37;
+}
+
+.content {
+  min-height: 400px;
+}
+
+.matchList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.matchCard {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 16, 12, 0.6) 0%,
+    rgba(15, 12, 8, 0.8) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.matchCard:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1);
+}
+
+.matchCardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.matchCardInfo {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+.matchCardImage {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imovelImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.matchCard:hover .imovelImage {
+  transform: scale(1.05);
+}
+
+.matchCardDetails {
+  flex: 1;
+}
+
+.matchCardDetails h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #F5C563;
+  margin: 0 0 8px 0;
+}
+
+.matchCardAddress {
+  font-size: 14px;
+  color: #B8A898;
+  margin: 0 0 12px 0;
+}
+
+.matchCardFeatures {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #B8A898;
+  margin-bottom: 12px;
+}
+
+.matchCardPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: #D4AF37;
+  margin: 0;
+}
+
+.matchCardScore {
+  flex-shrink: 0;
+}
+
+/* Term�metro */
+.thermometer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.thermometerBar {
+  width: 40px;
+  height: 160px;
+  background: rgba(20, 16, 12, 0.8);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.thermometerFill {
+  width: 100%;
+  border-radius: 16px;
+  transition: height 0.5s ease, background-color 0.3s ease;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.thermometerFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+}
+
+.thermometerLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scoreValue {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.scoreProbabilidade {
+  font-size: 12px;
+  color: #B8A898;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* A��es do Card */
+.matchCardActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.detailsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #D4AF37;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+}
+
+.detailsButton:hover {
+  color: #F5C563;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+}
+
+.actionButton,
+.actionButtonPrimary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.actionButton {
+  background: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.actionButton:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.actionButtonPrimary {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5C563 100%);
+  color: #0a0604;
+  border: none;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.actionButtonPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+/* Detalhes do Match */
+.matchDetails {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.matchDetails h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F5C563;
+  margin: 0 0 16px 0;
+}
+
+.criteriaList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.criteriaItem {
+  background: rgba(20, 16, 12, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.criteriaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.criteriaName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.criteriaStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.criteriaWeight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.criteriaWeight span {
+  font-size: 12px;
+  color: #B8A898;
+  white-space: nowrap;
+}
+
+.criteriaWeightBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(20, 16, 12, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.criteriaWeightFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.imovelCaracteristicas {
+  margin-top: 24px;
+}
+
+.caracteristicasTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.caracteristicaTag {
+  padding: 6px 12px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #D4AF37;
+  font-weight: 500;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.emptyState svg {
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.emptyState p {
+  font-size: 16px;
+  color: #B8A898;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .matchCardHeader {
+    flex-direction: column;
+  }
+
+  .matchCardScore {
+    align-self: center;
+  }
+
+  .thermometerBar {
+    width: 60px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .clienteInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  .matchCard {
+    padding: 16px;
+  }
+
+  .matchCardInfo {
+    flex-direction: column;
+  }
+
+  .matchCardImage {
+    width: 100%;
+    height: 200px;
+  }
+
+  .matchCardActions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cardActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .actionButton,
+  .actionButtonPrimary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .thermometer {
+    flex-direction: row;
+  }
+
+  .thermometerBar {
+    width: 120px;
+    height: 40px;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .thermometerFill {
+    height: 100%;
+    border-radius: 16px;
+  }
+}

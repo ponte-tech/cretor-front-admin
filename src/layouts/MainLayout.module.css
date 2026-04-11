@@ -1,0 +1,29 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0604;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 280px;
+  min-height: 100vh;
+  min-width: 0;
+  position: relative;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main {
+    margin-left: 0;
+  }
+}

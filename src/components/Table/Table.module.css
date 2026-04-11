@@ -1,0 +1,98 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  background: linear-gradient(180deg, rgba(25, 20, 15, 0.6) 0%, rgba(15, 12, 8, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: rgba(30, 24, 18, 0.5);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.table thead th {
+  padding: 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5C563;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.table tbody tr.clickable {
+  cursor: pointer;
+}
+
+.table tbody tr.clickable:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.table tbody td {
+  padding: 16px;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.loadingContainer,
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  background: linear-gradient(180deg, rgba(25, 20, 15, 0.6) 0%, rgba(15, 12, 8, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  color: #B8A898;
+}
+
+.loadingContainer p,
+.emptyContainer p {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(212, 175, 55, 0.2);
+  border-top-color: #D4AF37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table thead th,
+  .table tbody td {
+    padding: 12px;
+    font-size: 13px;
+  }
+}

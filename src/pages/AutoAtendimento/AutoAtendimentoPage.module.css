@@ -1,0 +1,395 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: #0a0604;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url('/IMG_5701.JPG.jpeg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  filter: blur(0.5px);
+  z-index: 0;
+}
+
+.background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 6, 4, 0.3) 0%,
+    rgba(10, 6, 4, 0.7) 50%,
+    rgba(10, 6, 4, 0.95) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.3));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(25, 20, 15, 0.95) 0%,
+    rgba(15, 12, 8, 0.98) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+              0 0 80px rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.progressBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.progressStep {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.progressStep:last-child {
+  flex: 0;
+}
+
+.progressDot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(20, 16, 12, 0.8);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B8A898;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.progressStepActive .progressDot {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5C563 100%);
+  border-color: #F5C563;
+  color: #0a0604;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  transform: scale(1.1);
+}
+
+.progressStepCompleted .progressDot {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.progressLine {
+  flex: 1;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.2);
+  margin: 0 8px;
+  position: relative;
+}
+
+.progressStepCompleted .progressLine {
+  background: linear-gradient(90deg, #D4AF37 0%, rgba(212, 175, 55, 0.2) 100%);
+}
+
+.stepContent {
+  margin-bottom: 32px;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stepTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #F5C563;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.stepDescription {
+  font-size: 16px;
+  color: #B8A898;
+  margin: 0 0 32px 0;
+  line-height: 1.6;
+}
+
+.subsectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #F5C563;
+  margin: 32px 0 16px 0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.checkboxGroup {
+  margin-bottom: 16px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 16px;
+  background: rgba(20, 16, 12, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.checkbox:hover {
+  background: rgba(212, 175, 55, 0.05);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.checkbox input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #D4AF37;
+}
+
+.checkbox span {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.checkboxCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 20px;
+  background: rgba(20, 16, 12, 0.4);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkboxCard:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+}
+
+.checkboxCard input[type='checkbox']:checked + span {
+  color: #F5C563;
+}
+
+.checkboxCard input[type='checkbox']:checked ~ * {
+  border-color: #D4AF37;
+}
+
+.checkboxCard input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #D4AF37;
+}
+
+.checkboxCard span {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.textarea {
+  width: 100%;
+  padding: 16px;
+  background: rgba(20, 16, 12, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  margin-top: 16px;
+}
+
+.textarea::placeholder {
+  color: #B8A898;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.formActionsRight {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.formActions button {
+  min-width: 140px;
+}
+
+.footer {
+  text-align: center;
+  color: #B8A898;
+  font-size: 13px;
+  margin-top: 24px;
+  padding: 0 16px;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .background {
+    width: 100%;
+    opacity: 0.03;
+  }
+
+  .card {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+
+  .logo img {
+    height: 45px;
+  }
+
+  .progressBar {
+    margin-bottom: 32px;
+  }
+
+  .progressDot {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .stepTitle {
+    font-size: 22px;
+  }
+
+  .stepDescription {
+    font-size: 14px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkboxGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .formActionsRight {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .formActions button {
+    width: 100%;
+  }
+}
