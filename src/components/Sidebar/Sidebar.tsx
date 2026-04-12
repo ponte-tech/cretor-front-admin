@@ -1,4 +1,5 @@
 import { useNavigate, Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import styles from './Sidebar.module.css'
 
 interface SidebarProps {
@@ -9,6 +10,7 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const navigate = useNavigate()
   const location = useLocation()
+  const { usuario, logout } = useAuth()
 
   const menuItems = [
     {
@@ -108,10 +110,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const isActive = (path: string) => location.pathname === path
 
   const handleLogout = () => {
-    // Aqui você implementaria a lógica de logout (limpar tokens, etc)
-    console.log('Logout')
+    logout()
     navigate('/login')
   }
+
+  const getInitials = (name: string) =>
+    name.split(' ').filter(Boolean).slice(0, 2).map(p => p[0].toUpperCase()).join('')
 
   return (
     <>
@@ -162,11 +166,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className={styles.userSection}>
             <div className={styles.userInfo}>
               <div className={styles.avatar}>
-                <span>RC</span>
+                <span>{getInitials(usuario?.nome || '')}</span>
               </div>
               <div className={styles.userDetails}>
-                <span className={styles.userName}>Rafael Leite</span>
-                <span className={styles.userEmail}>rafael@cretor.com</span>
+                <span className={styles.userName}>{usuario?.nome || ''}</span>
+                <span className={styles.userEmail}>{usuario?.email || ''}</span>
               </div>
             </div>
             <button className={styles.logoutButton} title="Sair" onClick={handleLogout}>

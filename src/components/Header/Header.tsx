@@ -1,10 +1,37 @@
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import styles from './Header.module.css'
+
+function getInitials(name: string): string {
+  return name.split(' ').filter(Boolean).slice(0, 2).map(p => p[0].toUpperCase()).join('')
+}
 
 interface HeaderProps {
   onMenuClick: () => void
 }
 
 export default function Header({ onMenuClick }: HeaderProps) {
+  const { usuario, logout } = useAuth()
+  const navigate = useNavigate()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -40,14 +67,39 @@ export default function Header({ onMenuClick }: HeaderProps) {
             <span className={styles.badge}>3</span>
           </button>
 
-          {/* Help */}
-          <button className={styles.iconButton} title="Ajuda">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="currentColor" />
-            </svg>
-          </button>
+          {/* User Avatar + Dropdown */}
+          <div className={styles.userMenu} ref={dropdownRef}>
+            <button className={styles.userButton} onClick={() => setDropdownOpen(!dropdownOpen)}>
+              {usuario?.foto ? (
+                <img src={usuario.foto} alt={usuario.nome} className={styles.userAvatar} />
+              ) : (
+                <div className={styles.userAvatarPlaceholder}>
+                  {getInitials(usuario?.nome || '')}
+                </div>
+              )}
+              <span className={styles.userName}>{usuario?.nome?.split(' ')[0]}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={`${styles.chevron} ${dropdownOpen ? styles.chevronOpen : ''}`}>
+                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            {dropdownOpen && (
+              <div className={styles.dropdown}>
+                <div className={styles.dropdownUserInfo}>
+                  <div className={styles.dropdownName}>{usuario?.nome}</div>
+                  <div className={styles.dropdownEmail}>{usuario?.email}</div>
+                </div>
+                <div className={styles.dropdownDivider} />
+                <button className={styles.dropdownItem} onClick={handleLogout}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 17L21 12L16 7M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Sair
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
