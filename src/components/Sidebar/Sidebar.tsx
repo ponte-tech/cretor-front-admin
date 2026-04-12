@@ -5,9 +5,11 @@ import styles from './Sidebar.module.css'
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  collapsed: boolean
+  onToggleCollapse: () => void
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }: SidebarProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const { usuario, logout } = useAuth()
@@ -125,15 +127,27 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       )}
 
       {/* Sidebar */}
-      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''} ${collapsed ? styles.collapsed : ''}`}>
         <div className={styles.sidebarContent}>
-          {/* Logo */}
+          {/* Logo + Collapse Toggle */}
           <div className={styles.logo}>
-            <img
-              src="/HORIZONTAL BRANCO SEM FUNDO.png"
-              alt="Cretor"
-              className={styles.logoImage}
-            />
+            {!collapsed && (
+              <img
+                src="/HORIZONTAL BRANCO SEM FUNDO.png"
+                alt="Cretor"
+                className={styles.logoImage}
+              />
+            )}
+            <button
+              className={`${styles.collapseButton} ${collapsed ? styles.collapseButtonCenter : ''}`}
+              onClick={onToggleCollapse}
+              title={collapsed ? 'Expandir menu' : 'Recolher menu'}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className={collapsed ? styles.collapseIconFlipped : ''}>
+                <path d="M11 17L6 12L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M18 17L13 12L18 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
 
           {/* Navigation */}
@@ -142,19 +156,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               {menuItems.map((item) => (
                 <li key={item.path}>
                   {item.disabled ? (
-                    <span className={`${styles.navItem} ${styles.disabled}`}>
+                    <span className={`${styles.navItem} ${styles.disabled}`} title={collapsed ? item.name : undefined}>
                       <span className={styles.navIcon}>{item.icon}</span>
-                      <span className={styles.navText}>{item.name}</span>
-                      <span className={styles.comingSoon}>Em breve</span>
+                      {!collapsed && <span className={styles.navText}>{item.name}</span>}
+                      {!collapsed && <span className={styles.comingSoon}>Em breve</span>}
                     </span>
                   ) : (
                     <Link
                       to={item.path}
                       className={`${styles.navItem} ${isActive(item.path) ? styles.active : ''}`}
                       onClick={onClose}
+                      title={collapsed ? item.name : undefined}
                     >
                       <span className={styles.navIcon}>{item.icon}</span>
-                      <span className={styles.navText}>{item.name}</span>
+                      {!collapsed && <span className={styles.navText}>{item.name}</span>}
                     </Link>
                   )}
                 </li>
@@ -165,20 +180,24 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Section */}
           <div className={styles.userSection}>
             <div className={styles.userInfo}>
-              <div className={styles.avatar}>
+              <div className={styles.avatar} title={collapsed ? usuario?.nome : undefined}>
                 <span>{getInitials(usuario?.nome || '')}</span>
               </div>
-              <div className={styles.userDetails}>
-                <span className={styles.userName}>{usuario?.nome || ''}</span>
-                <span className={styles.userEmail}>{usuario?.email || ''}</span>
-              </div>
+              {!collapsed && (
+                <div className={styles.userDetails}>
+                  <span className={styles.userName}>{usuario?.nome || ''}</span>
+                  <span className={styles.userEmail}>{usuario?.email || ''}</span>
+                </div>
+              )}
             </div>
-            <button className={styles.logoutButton} title="Sair" onClick={handleLogout}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16 17L21 12L16 7M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            {!collapsed && (
+              <button className={styles.logoutButton} title="Sair" onClick={handleLogout}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M16 17L21 12L16 7M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </aside>

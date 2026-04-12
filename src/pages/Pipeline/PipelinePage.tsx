@@ -501,20 +501,21 @@ export default function PipelinePage() {
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/><path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
                     {tempoNaEtapa(negocio.dataMovimentacao)}
                   </span>
-                  <button className={styles.mobileCardMove} onClick={() => setMoveCardId(moveCardId === negocio.id ? null : negocio.id)}>
+                  <button className={styles.mobileCardMove} onClick={(e) => { e.stopPropagation(); setMoveCardId(moveCardId === negocio.id ? null : negocio.id) }}>
                     Mover etapa
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
                 </div>
 
                 {moveCardId === negocio.id && (
-                  <div className={styles.movePicker}>
+                  <div className={styles.movePicker} onClick={(e) => e.stopPropagation()}>
                     {etapas.filter(e => e.id !== activeTab).map((etapa) => (
                       <button
                         key={etapa.id}
                         className={styles.moveOption}
                         style={{ borderLeftColor: etapa.cor }}
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation()
                           const probMap: Record<string, number> = {
                             primeiro_contato: 20, qualificado: 40, visita_agendada: 55,
                             proposta_enviada: 65, negociacao: 80, fechado: 100, perdido: 0,

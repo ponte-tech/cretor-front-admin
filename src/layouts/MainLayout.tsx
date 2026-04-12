@@ -6,6 +6,7 @@ import styles from './MainLayout.module.css'
 
 export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
 
   const handleMenuClick = () => {
     setSidebarOpen(!sidebarOpen)
@@ -17,9 +18,14 @@ export default function MainLayout() {
 
   return (
     <div className={styles.layout}>
-      <Sidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={handleSidebarClose}
+        collapsed={collapsed}
+        onToggleCollapse={() => setCollapsed(!collapsed)}
+      />
 
-      <div className={styles.main}>
+      <div className={`${styles.main} ${collapsed ? styles.mainCollapsed : ''}`}>
         <Header onMenuClick={handleMenuClick} />
 
         <main className={styles.content}>
