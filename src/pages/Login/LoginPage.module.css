@@ -489,6 +489,24 @@
   }
 }
 
+.privacyLink {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.privacyLink a {
+  font-size: 12px;
+  color: #B8A898;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.privacyLink a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 /* iOS Safe Area */
 @supports (padding: max(0px)) {
   .container {

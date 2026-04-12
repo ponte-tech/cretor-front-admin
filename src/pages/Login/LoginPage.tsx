@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
@@ -193,6 +193,10 @@ export default function LoginPage() {
               <span>Continuar com Google</span>
             </button>
           </form>
+
+          <div className={styles.privacyLink}>
+            <Link to="/politica-de-privacidade">Política de Privacidade</Link>
+          </div>
         </div>
       </div>
     </div>
