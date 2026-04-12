@@ -49,7 +49,7 @@ export default function LoginPage() {
     setIsLoading(true)
     try {
       await login(email, password)
-      navigate('/imoveis')
+      navigate('/leads')
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Erro ao fazer login'
       if (message.includes('email') || message.includes('password') || message.includes('unauthorized')) {

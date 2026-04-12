@@ -13,6 +13,7 @@ interface LeadFormData {
   email: string
   prazo: string
   formaPagamento: string
+  website: string  // honeypot
 }
 
 const PRAZOS = [
@@ -38,6 +39,7 @@ export default function LeadCapturePage() {
     email: '',
     prazo: '',
     formaPagamento: '',
+    website: '',
   })
   const [errors, setErrors] = useState<Partial<Record<keyof LeadFormData, string>>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -110,6 +112,7 @@ export default function LeadCapturePage() {
         email: formData.email,
         prazo: formData.prazo,
         forma_pagamento: formData.formaPagamento,
+        website: formData.website,
       })
       trackSubmitSuccess()
       trackLead({
@@ -280,6 +283,18 @@ export default function LeadCapturePage() {
                 inputMode="email"
               />
             </div>
+          </div>
+
+          {/* Honeypot - invisible to humans, bots will fill it */}
+          <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={e => updateField('website', e.target.value)}
+            />
           </div>
 
           <Button type="submit" variant="primary" fullWidth disabled={isSubmitting}>

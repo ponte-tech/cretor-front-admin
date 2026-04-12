@@ -87,7 +87,7 @@ export interface LeadResponse {
 
 // Leads API
 export const leadsApi = {
-  create: (data: { nome: string; whatsapp: string; email: string; prazo: string; forma_pagamento: string }) =>
+  create: (data: { nome: string; whatsapp: string; email: string; prazo: string; forma_pagamento: string; website?: string }) =>
     api<LeadResponse>('/leads', { method: 'POST', body: data }),
 
   list: (params?: { status?: string; q?: string }) => {
