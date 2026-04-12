@@ -17,6 +17,10 @@ export interface NegocioPipeline {
   clienteEmail: string
   clienteTelefone: string
 
+  // Lead info
+  leadPrazo?: string
+  leadFormaPagamento?: string
+
   // Imóvel de Interesse
   imovelId: string
   imovelTitulo: string

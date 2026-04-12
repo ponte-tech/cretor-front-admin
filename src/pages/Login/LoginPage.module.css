@@ -288,6 +288,14 @@
   display: inline;
 }
 
+/* Responsive - Large Tablet / Small Desktop */
+@media (max-width: 1200px) {
+  .formContainer {
+    max-width: 440px;
+    padding: 40px 36px;
+  }
+}
+
 /* Responsive - Tablet */
 @media (max-width: 1024px) {
   .container {
@@ -310,6 +318,7 @@
 
   .rightSide {
     min-height: 100vh;
+    min-height: 100dvh;
     padding: 40px 20px;
   }
 
@@ -322,6 +331,7 @@
   .formContainer {
     padding: 40px 32px;
     max-width: 500px;
+    animation: fadeInUp 0.5s ease-out;
   }
 
   .title {
@@ -333,12 +343,34 @@
   }
 }
 
+/* Responsive - Small Tablet */
+@media (max-width: 768px) {
+  .rightSide {
+    padding: 32px 16px;
+  }
+
+  .formContainer {
+    padding: 36px 28px;
+    max-width: 100%;
+    border-radius: 22px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .form {
+    gap: 18px;
+  }
+}
+
 /* Responsive - Mobile */
 @media (max-width: 640px) {
   .rightSide {
     padding: 20px 16px;
     justify-content: flex-start;
     padding-top: 60px;
+    min-height: 100dvh;
   }
 
   .formContainer {
@@ -415,6 +447,45 @@
 
   .googleButton span {
     font-size: 13px;
+  }
+}
+
+/* Responsive - Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .rightSide {
+    padding: 16px;
+    justify-content: center;
+    min-height: 100dvh;
+  }
+
+  .formContainer {
+    padding: 24px 28px;
+    max-width: 440px;
+  }
+
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .divider {
+    margin: 2px 0;
+  }
+
+  .googleButton {
+    padding: 10px 20px;
   }
 }
 

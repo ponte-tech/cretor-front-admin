@@ -1,11 +1,13 @@
 import { useState, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import styles from './LoginPage.module.css'
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const { login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -21,11 +23,9 @@ export default function LoginPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    // Reset errors
     setEmailError('')
     setPasswordError('')
 
-    // Validate
     let hasError = false
 
     if (!email) {
@@ -46,28 +46,24 @@ export default function LoginPage() {
 
     if (hasError) return
 
-    // Submit
     setIsLoading(true)
     try {
-      // Simular chamada à API
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      console.log('Login:', { email, password })
-
-      // Redirecionar para a listagem de imóveis
+      await login(email, password)
       navigate('/imoveis')
     } catch (error) {
-      console.error('Erro no login:', error)
-      setPasswordError('Erro ao fazer login. Tente novamente.')
+      const message = error instanceof Error ? error.message : 'Erro ao fazer login'
+      if (message.includes('email') || message.includes('password') || message.includes('unauthorized')) {
+        setPasswordError('E-mail ou senha inválidos')
+      } else {
+        setPasswordError(message)
+      }
     } finally {
       setIsLoading(false)
     }
   }
 
   const handleGoogleLogin = () => {
-    // Aqui você implementaria a autenticação com Google
-    console.log('Login com Google')
-    // Por enquanto, apenas redireciona para a listagem de imóveis
-    navigate('/imoveis')
+    console.log('Login com Google - em breve')
   }
 
   return (

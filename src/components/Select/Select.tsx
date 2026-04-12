@@ -12,6 +12,8 @@ interface SelectProps {
   error?: string
   value?: string
   onChange?: (value: string) => void
+  onFocus?: () => void
+  onBlur?: (hasValue: boolean) => void
   className?: string
   placeholder?: string
   disabled?: boolean
@@ -23,6 +25,8 @@ export default function Select({
   error,
   value,
   onChange,
+  onFocus,
+  onBlur,
   className = '',
   placeholder,
   disabled = false,
@@ -54,14 +58,21 @@ export default function Select({
 
   const handleToggle = () => {
     if (!disabled) {
-      setIsOpen(prev => !prev)
+      const willOpen = !isOpen
+      setIsOpen(willOpen)
       setHighlightedIndex(-1)
+      if (willOpen) {
+        onFocus?.()
+      } else {
+        onBlur?.(hasValue)
+      }
     }
   }
 
   const handleSelect = (optionValue: string) => {
     onChange?.(optionValue)
     setIsOpen(false)
+    onBlur?.(true)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

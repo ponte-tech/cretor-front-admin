@@ -1,11 +1,97 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NegocioPipeline, EtapaPipeline, EtapaConfig } from '../../types/pipeline'
-import { negociosPipeline } from '../../data/pipeline.mock'
+import { pipelineApi, NegocioResponse, observacoesApi, ObservacaoResponse } from '../../services/api'
+import Modal from '../../components/Modal/Modal'
 import styles from './PipelinePage.module.css'
 
+const MAN_AVATARS = ['3','5','8','11','12','13','17','19','22','24','26','29','31','33','34','36','37','42','43','46','49','53','54','55','59','64','65']
+const WOMAN_AVATARS = ['1','2','4','6','7','9','10','14','15','16','18','20','21','23','25','27','28','30','32','35','38','39','40','41','44','45','47','48','50','51','52','56','57','58','60','61','62','63','66']
+const ALL_AVATARS = [...MAN_AVATARS.map(n => `/avatares/man/${n}.png`), ...WOMAN_AVATARS.map(n => `/avatares/woman/${n}.png`)]
+
+function getAvatar(id: string): string {
+  let hash = 0
+  for (let i = 0; i < id.length; i++) { hash = ((hash << 5) - hash) + id.charCodeAt(i); hash |= 0 }
+  return ALL_AVATARS[Math.abs(hash) % ALL_AVATARS.length]
+}
+
+const PRAZO_LABELS: Record<string, string> = {
+  'imediatamente': 'Imediatamente',
+  'ate-3-meses': 'Ate 3 meses',
+  '3-a-6-meses': '3 a 6 meses',
+  'pesquisando': 'Pesquisando',
+}
+
+const PAGAMENTO_LABELS: Record<string, string> = {
+  'financiamento': 'Financiamento',
+  'a-vista': 'A vista',
+  'fgts-financiamento': 'FGTS + Financiamento',
+  'nao-decidi': 'Nao decidi',
+}
+
+function tempoNaEtapa(dataMovimentacao: string): string {
+  const agora = new Date().getTime()
+  const entrada = new Date(dataMovimentacao).getTime()
+  const diff = agora - entrada
+
+  const minutos = Math.floor(diff / 60000)
+  const horas = Math.floor(diff / 3600000)
+  const dias = Math.floor(diff / 86400000)
+
+  if (minutos < 1) return 'agora mesmo'
+  if (minutos < 60) return `${minutos}min`
+  if (horas < 24) return `${horas}h ${minutos % 60}min`
+  if (dias === 1) return `1 dia ${horas % 24}h`
+  return `${dias} dias ${horas % 24}h`
+}
+
+function mapApiToNegocio(n: NegocioResponse): NegocioPipeline {
+  return {
+    id: n.id,
+    clienteId: n.lead_id,
+    clienteNome: n.lead_nome,
+    clienteEmail: n.lead_email,
+    clienteTelefone: n.lead_telefone,
+    leadPrazo: n.lead_prazo,
+    leadFormaPagamento: n.lead_forma_pagamento,
+    clienteFoto: undefined,
+    imovelId: '',
+    imovelTitulo: '',
+    imovelFoto: undefined,
+    imovelEndereco: '',
+    etapa: n.etapa as EtapaPipeline,
+    prioridade: n.prioridade as any,
+    valorNegocio: n.valor_negocio,
+    probabilidadeFechamento: n.probabilidade_fechamento,
+    dataCriacao: n.data_criacao,
+    dataUltimaInteracao: n.data_ultima_interacao,
+    dataMovimentacao: n.data_movimentacao,
+    diasNaEtapa: n.dias_na_etapa,
+    proximaAcao: n.proxima_acao,
+    ultimaAnotacao: n.ultima_anotacao,
+    corretorResponsavel: n.corretor_responsavel || '',
+    tags: n.tags || [],
+    motivoPerda: n.motivo_perda,
+  }
+}
+
 export default function PipelinePage() {
-  const [negocios, setNegocios] = useState<NegocioPipeline[]>(negociosPipeline)
+  const [negocios, setNegocios] = useState<NegocioPipeline[]>([])
   const [draggedItem, setDraggedItem] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<EtapaPipeline>('primeiro_contato')
+  const [moveCardId, setMoveCardId] = useState<string | null>(null)
+  const [selectedNegocio, setSelectedNegocio] = useState<NegocioPipeline | null>(null)
+  const [observacoes, setObservacoes] = useState<ObservacaoResponse[]>([])
+  const [novaObservacao, setNovaObservacao] = useState('')
+  const [loadingObs, setLoadingObs] = useState(false)
+  const [sendingObs, setSendingObs] = useState(false)
+  const dragStartPos = useRef<{ x: number; y: number } | null>(null)
+  const wasDragged = useRef(false)
+
+  useEffect(() => {
+    pipelineApi.list().then((data) => {
+      setNegocios(data.map(mapApiToNegocio))
+    }).catch(console.error)
+  }, [])
 
   const etapas: EtapaConfig[] = [
     {
@@ -117,9 +203,40 @@ export default function PipelinePage() {
     return colors[prioridade] || '#64748b'
   }
 
+  const openSidePanel = (negocio: NegocioPipeline) => {
+    setSelectedNegocio(negocio)
+    setNovaObservacao('')
+    setLoadingObs(true)
+    observacoesApi.list(negocio.id).then(setObservacoes).catch(console.error).finally(() => setLoadingObs(false))
+  }
+
+  const handleAddObservacao = () => {
+    if (!selectedNegocio || !novaObservacao.trim()) return
+    setSendingObs(true)
+    observacoesApi.create(selectedNegocio.id, { texto: novaObservacao.trim() })
+      .then((obs) => {
+        setObservacoes((prev) => [obs, ...prev])
+        setNovaObservacao('')
+      })
+      .catch(console.error)
+      .finally(() => setSendingObs(false))
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    dragStartPos.current = { x: e.clientX, y: e.clientY }
+    wasDragged.current = false
+  }
+
   const handleDragStart = (e: React.DragEvent, negocioId: string) => {
+    wasDragged.current = true
     setDraggedItem(negocioId)
     e.dataTransfer.effectAllowed = 'move'
+  }
+
+  const handleCardClick = (negocio: NegocioPipeline) => {
+    if (!wasDragged.current) {
+      openSidePanel(negocio)
+    }
   }
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -132,26 +249,22 @@ export default function PipelinePage() {
 
     if (!draggedItem) return
 
-    setNegocios((prevNegocios) =>
-      prevNegocios.map((negocio) =>
-        negocio.id === draggedItem
-          ? {
-              ...negocio,
-              etapa: novaEtapa,
-              dataMovimentacao: new Date().toISOString().split('T')[0],
-              diasNaEtapa: 0,
-              probabilidadeFechamento:
-                novaEtapa === 'fechado' ? 100 :
-                novaEtapa === 'perdido' ? 0 :
-                novaEtapa === 'negociacao' ? 80 :
-                novaEtapa === 'proposta_enviada' ? 65 :
-                novaEtapa === 'visita_agendada' ? 55 :
-                novaEtapa === 'qualificado' ? 40 :
-                20
-            }
-          : negocio
+    const probMap: Record<string, number> = {
+      primeiro_contato: 20, qualificado: 40, visita_agendada: 55,
+      proposta_enviada: 65, negociacao: 80, fechado: 100, perdido: 0,
+    }
+
+    // Optimistic update
+    setNegocios((prev) =>
+      prev.map((n) =>
+        n.id === draggedItem
+          ? { ...n, etapa: novaEtapa, diasNaEtapa: 0, dataMovimentacao: new Date().toISOString(), probabilidadeFechamento: probMap[novaEtapa] }
+          : n
       )
     )
+
+    // Persist to API
+    pipelineApi.move(draggedItem, novaEtapa).catch(console.error)
 
     setDraggedItem(null)
   }
@@ -186,31 +299,7 @@ export default function PipelinePage() {
           </div>
           <div>
             <div className={styles.statValue}>{stats.totalNegocios}</div>
-            <div className={styles.statLabel}>Negócios Ativos</div>
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="#D4AF37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div className={styles.statValue}>{formatCurrency(stats.totalValor)}</div>
-            <div className={styles.statLabel}>Valor em Pipeline</div>
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M20 6L9 17L4 12" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div className={styles.statValue}>{formatCurrency(stats.valorFechado)}</div>
-            <div className={styles.statLabel}>Vendas Fechadas</div>
+            <div className={styles.statLabel}>Negocios Ativos</div>
           </div>
         </div>
 
@@ -222,16 +311,15 @@ export default function PipelinePage() {
           </div>
           <div>
             <div className={styles.statValue}>{stats.taxaConversao.toFixed(1)}%</div>
-            <div className={styles.statLabel}>Taxa de Conversão</div>
+            <div className={styles.statLabel}>Taxa de Conversao</div>
           </div>
         </div>
       </div>
 
-      {/* Kanban Board */}
+      {/* Desktop: Kanban Board */}
       <div className={styles.kanbanBoard}>
         {etapas.map((etapa) => {
           const negociosEtapa = getNegociosPorEtapa(etapa.id)
-          const totalValor = getTotalValorEtapa(etapa.id)
 
           return (
             <div
@@ -248,7 +336,6 @@ export default function PipelinePage() {
                   <span>{etapa.nome}</span>
                   <span className={styles.columnCount}>{negociosEtapa.length}</span>
                 </div>
-                <div className={styles.columnValue}>{formatCurrency(totalValor)}</div>
               </div>
 
               <div className={styles.columnContent}>
@@ -257,22 +344,18 @@ export default function PipelinePage() {
                     key={negocio.id}
                     className={styles.negocioCard}
                     draggable
+                    onMouseDown={handleMouseDown}
                     onDragStart={(e) => handleDragStart(e, negocio.id)}
+                    onClick={() => handleCardClick(negocio)}
                   >
                     {/* Header do Card */}
                     <div className={styles.cardHeader}>
                       <div className={styles.clienteInfo}>
-                        {negocio.clienteFoto ? (
-                          <img
-                            src={negocio.clienteFoto}
-                            alt={negocio.clienteNome}
-                            className={styles.clienteAvatar}
-                          />
-                        ) : (
-                          <div className={styles.clienteAvatarPlaceholder}>
-                            {negocio.clienteNome.charAt(0)}
-                          </div>
-                        )}
+                        <img
+                          src={negocio.clienteFoto || getAvatar(negocio.id)}
+                          alt={negocio.clienteNome}
+                          className={styles.clienteAvatar}
+                        />
                         <div>
                           <div className={styles.clienteNome}>{negocio.clienteNome}</div>
                           <div className={styles.clienteContato}>{negocio.clienteTelefone}</div>
@@ -286,40 +369,31 @@ export default function PipelinePage() {
                       </div>
                     </div>
 
-                    {/* Imóvel */}
-                    <div className={styles.imovelInfo}>
-                      {negocio.imovelFoto && (
-                        <img
-                          src={negocio.imovelFoto}
-                          alt={negocio.imovelTitulo}
-                          className={styles.imovelFoto}
-                        />
-                      )}
-                      <div className={styles.imovelDetalhes}>
-                        <div className={styles.imovelTitulo}>{negocio.imovelTitulo}</div>
-                        <div className={styles.imovelEndereco}>{negocio.imovelEndereco}</div>
+                    {/* Lead Info */}
+                    {(negocio.leadPrazo || negocio.leadFormaPagamento) && (
+                      <div className={styles.leadInfo}>
+                        {negocio.leadPrazo && (
+                          <div className={styles.leadInfoItem}>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                              <line x1="16" y1="2" x2="16" y2="6" />
+                              <line x1="8" y1="2" x2="8" y2="6" />
+                              <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>{PRAZO_LABELS[negocio.leadPrazo] || negocio.leadPrazo}</span>
+                          </div>
+                        )}
+                        {negocio.leadFormaPagamento && (
+                          <div className={styles.leadInfoItem}>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                              <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                            <span>{PAGAMENTO_LABELS[negocio.leadFormaPagamento] || negocio.leadFormaPagamento}</span>
+                          </div>
+                        )}
                       </div>
-                    </div>
-
-                    {/* Valor */}
-                    <div className={styles.valorNegocio}>{formatCurrency(negocio.valorNegocio)}</div>
-
-                    {/* Probabilidade */}
-                    <div className={styles.probabilidade}>
-                      <div className={styles.probabilidadeLabel}>
-                        <span>Probabilidade</span>
-                        <span className={styles.probabilidadeValue}>{negocio.probabilidadeFechamento}%</span>
-                      </div>
-                      <div className={styles.progressBar}>
-                        <div
-                          className={styles.progressFill}
-                          style={{
-                            width: `${negocio.probabilidadeFechamento}%`,
-                            backgroundColor: etapa.cor
-                          }}
-                        />
-                      </div>
-                    </div>
+                    )}
 
                     {/* Footer */}
                     <div className={styles.cardFooter}>
@@ -328,7 +402,7 @@ export default function PipelinePage() {
                           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
                           <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
-                        {negocio.diasNaEtapa} {negocio.diasNaEtapa === 1 ? 'dia' : 'dias'}
+                        {tempoNaEtapa(negocio.dataMovimentacao)}
                       </div>
                       {negocio.proximaAcao && (
                         <div className={styles.proximaAcao} title={negocio.proximaAcao}>
@@ -363,6 +437,248 @@ export default function PipelinePage() {
           )
         })}
       </div>
+
+      {/* Mobile: Tabs + Cards */}
+      <div className={styles.mobileView}>
+        <div className={styles.tabBar}>
+          {etapas.map((etapa) => {
+            const count = getNegociosPorEtapa(etapa.id).length
+            return (
+              <button
+                key={etapa.id}
+                className={`${styles.tab} ${activeTab === etapa.id ? styles.tabActive : ''}`}
+                style={activeTab === etapa.id ? { borderColor: etapa.cor, color: etapa.cor } : {}}
+                onClick={() => setActiveTab(etapa.id)}
+              >
+                {etapa.nome}
+                {count > 0 && <span className={styles.tabCount} style={activeTab === etapa.id ? { backgroundColor: etapa.cor } : {}}>{count}</span>}
+              </button>
+            )
+          })}
+        </div>
+
+        <div className={styles.mobileCards}>
+          {getNegociosPorEtapa(activeTab).length === 0 ? (
+            <div className={styles.mobileEmpty}>Nenhum negocio nesta etapa</div>
+          ) : (
+            getNegociosPorEtapa(activeTab).map((negocio) => (
+              <div key={negocio.id} className={styles.mobileCard} onClick={() => openSidePanel(negocio)}>
+                <div className={styles.mobileCardTop}>
+                  <div className={styles.mobileCardInfo}>
+                    <img src={negocio.clienteFoto || getAvatar(negocio.id)} alt={negocio.clienteNome} className={styles.mobileCardAvatar} />
+                    <div className={styles.mobileCardName}>
+                      <span className={styles.mobileCardNome}>{negocio.clienteNome}</span>
+                      <span className={styles.mobileCardTel}>{negocio.clienteTelefone}</span>
+                    </div>
+                  </div>
+                  <div
+                    className={styles.prioridadeBadge}
+                    style={{ backgroundColor: `${getPrioridadeColor(negocio.prioridade)}20`, color: getPrioridadeColor(negocio.prioridade) }}
+                  >
+                    {negocio.prioridade}
+                  </div>
+                </div>
+
+                {(negocio.leadPrazo || negocio.leadFormaPagamento) && (
+                  <div className={styles.mobileCardMeta}>
+                    {negocio.leadPrazo && (
+                      <span className={styles.mobileCardMetaItem}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        {PRAZO_LABELS[negocio.leadPrazo] || negocio.leadPrazo}
+                      </span>
+                    )}
+                    {negocio.leadFormaPagamento && (
+                      <span className={styles.mobileCardMetaItem}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        {PAGAMENTO_LABELS[negocio.leadFormaPagamento] || negocio.leadFormaPagamento}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                <div className={styles.mobileCardFooter}>
+                  <span className={styles.mobileCardTime}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/><path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                    {tempoNaEtapa(negocio.dataMovimentacao)}
+                  </span>
+                  <button className={styles.mobileCardMove} onClick={() => setMoveCardId(moveCardId === negocio.id ? null : negocio.id)}>
+                    Mover etapa
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                </div>
+
+                {moveCardId === negocio.id && (
+                  <div className={styles.movePicker}>
+                    {etapas.filter(e => e.id !== activeTab).map((etapa) => (
+                      <button
+                        key={etapa.id}
+                        className={styles.moveOption}
+                        style={{ borderLeftColor: etapa.cor }}
+                        onClick={() => {
+                          const probMap: Record<string, number> = {
+                            primeiro_contato: 20, qualificado: 40, visita_agendada: 55,
+                            proposta_enviada: 65, negociacao: 80, fechado: 100, perdido: 0,
+                          }
+                          setNegocios(prev => prev.map(n => n.id === negocio.id ? { ...n, etapa: etapa.id, diasNaEtapa: 0, dataMovimentacao: new Date().toISOString(), probabilidadeFechamento: probMap[etapa.id] } : n))
+                          pipelineApi.move(negocio.id, etapa.id).catch(console.error)
+                          setMoveCardId(null)
+                        }}
+                      >
+                        <span style={{ color: etapa.cor }}>{etapa.icone}</span>
+                        {etapa.nome}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {negocio.tags.length > 0 && (
+                  <div className={styles.tags} style={{ marginTop: '8px' }}>
+                    {negocio.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className={styles.tag}>{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      {/* Side Panel - Detalhes do Lead */}
+      <Modal
+        isOpen={!!selectedNegocio}
+        onClose={() => setSelectedNegocio(null)}
+        title="Detalhes do Lead"
+        size="large"
+      >
+        {selectedNegocio && (
+          <div className={styles.sidePanel}>
+            {/* Lead Info */}
+            <div className={styles.spSection}>
+              <div className={styles.spLeadHeader}>
+                <img
+                  src={selectedNegocio.clienteFoto || getAvatar(selectedNegocio.id)}
+                  alt={selectedNegocio.clienteNome}
+                  className={styles.spAvatar}
+                />
+                <div>
+                  <div className={styles.spName}>{selectedNegocio.clienteNome}</div>
+                  <div className={styles.spContact}>{selectedNegocio.clienteEmail}</div>
+                  <div className={styles.spContact}>{selectedNegocio.clienteTelefone}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Detalhes do Negocio */}
+            <div className={styles.spSection}>
+              <h3 className={styles.spSectionTitle}>Detalhes do Negocio</h3>
+              <div className={styles.spGrid}>
+                <div className={styles.spField}>
+                  <span className={styles.spFieldLabel}>Etapa</span>
+                  <span className={styles.spFieldValue} style={{ textTransform: 'capitalize' }}>
+                    {selectedNegocio.etapa.replace(/_/g, ' ')}
+                  </span>
+                </div>
+                <div className={styles.spField}>
+                  <span className={styles.spFieldLabel}>Prioridade</span>
+                  <span className={styles.spFieldValue} style={{ color: getPrioridadeColor(selectedNegocio.prioridade), textTransform: 'capitalize' }}>
+                    {selectedNegocio.prioridade}
+                  </span>
+                </div>
+                <div className={styles.spField}>
+                  <span className={styles.spFieldLabel}>Probabilidade</span>
+                  <span className={styles.spFieldValue}>{selectedNegocio.probabilidadeFechamento}%</span>
+                </div>
+                <div className={styles.spField}>
+                  <span className={styles.spFieldLabel}>Tempo na Etapa</span>
+                  <span className={styles.spFieldValue}>{tempoNaEtapa(selectedNegocio.dataMovimentacao)}</span>
+                </div>
+                {selectedNegocio.leadPrazo && (
+                  <div className={styles.spField}>
+                    <span className={styles.spFieldLabel}>Prazo</span>
+                    <span className={styles.spFieldValue}>{PRAZO_LABELS[selectedNegocio.leadPrazo] || selectedNegocio.leadPrazo}</span>
+                  </div>
+                )}
+                {selectedNegocio.leadFormaPagamento && (
+                  <div className={styles.spField}>
+                    <span className={styles.spFieldLabel}>Forma de Pagamento</span>
+                    <span className={styles.spFieldValue}>{PAGAMENTO_LABELS[selectedNegocio.leadFormaPagamento] || selectedNegocio.leadFormaPagamento}</span>
+                  </div>
+                )}
+                {selectedNegocio.proximaAcao && (
+                  <div className={styles.spField}>
+                    <span className={styles.spFieldLabel}>Proxima Acao</span>
+                    <span className={styles.spFieldValue}>{selectedNegocio.proximaAcao}</span>
+                  </div>
+                )}
+                {selectedNegocio.corretorResponsavel && (
+                  <div className={styles.spField}>
+                    <span className={styles.spFieldLabel}>Corretor Responsavel</span>
+                    <span className={styles.spFieldValue}>{selectedNegocio.corretorResponsavel}</span>
+                  </div>
+                )}
+              </div>
+              {selectedNegocio.tags.length > 0 && (
+                <div className={styles.spTags}>
+                  {selectedNegocio.tags.map((tag) => (
+                    <span key={tag} className={styles.tag}>{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Observacoes */}
+            <div className={styles.spSection}>
+              <h3 className={styles.spSectionTitle}>Observacoes</h3>
+
+              {/* Form para adicionar */}
+              <div className={styles.spObsForm}>
+                <textarea
+                  className={styles.spObsInput}
+                  placeholder="Adicionar observacao..."
+                  value={novaObservacao}
+                  onChange={(e) => setNovaObservacao(e.target.value)}
+                  rows={3}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      handleAddObservacao()
+                    }
+                  }}
+                />
+                <button
+                  className={styles.spObsBtn}
+                  onClick={handleAddObservacao}
+                  disabled={sendingObs || !novaObservacao.trim()}
+                >
+                  {sendingObs ? 'Enviando...' : 'Adicionar'}
+                </button>
+              </div>
+
+              {/* Lista de observacoes */}
+              <div className={styles.spObsList}>
+                {loadingObs ? (
+                  <div className={styles.spObsEmpty}>Carregando...</div>
+                ) : observacoes.length === 0 ? (
+                  <div className={styles.spObsEmpty}>Nenhuma observacao registrada</div>
+                ) : (
+                  observacoes.map((obs) => (
+                    <div key={obs.id} className={styles.spObsItem}>
+                      <div className={styles.spObsHeader}>
+                        {obs.autor && <span className={styles.spObsAutor}>{obs.autor}</span>}
+                        <span className={styles.spObsDate}>
+                          {new Date(obs.created_at).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                      </div>
+                      <div className={styles.spObsText}>{obs.texto}</div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   )
 }

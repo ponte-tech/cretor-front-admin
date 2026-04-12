@@ -347,6 +347,24 @@
   transition: width 0.3s ease;
 }
 
+/* Lead Info */
+.leadInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.leadInfoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #d4ccc4;
+}
+
 /* Card Footer */
 .cardFooter {
   display: flex;
@@ -411,7 +429,415 @@
   font-style: italic;
 }
 
-/* Responsive */
+/* ========== MOBILE VIEW ========== */
+.mobileView {
+  display: none;
+}
+
+.tabBar {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.tabBar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #B8A898;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: #F5C563;
+}
+
+.tabActive {
+  color: #F5C563;
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: rgba(212, 175, 55, 0.2);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mobileCards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileCard {
+  background: linear-gradient(180deg, rgba(30, 25, 18, 0.7) 0%, rgba(18, 14, 10, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.mobileCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.mobileCardInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobileCardAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  flex-shrink: 0;
+}
+
+.mobileCardName {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.mobileCardNome {
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobileCardTel {
+  font-size: 12px;
+  color: #B8A898;
+}
+
+.mobileCardMeta {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.mobileCardMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #d4ccc4;
+}
+
+.mobileCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.mobileCardTime {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #B8A898;
+}
+
+.mobileCardMove {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 8px;
+  color: #F5C563;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobileCardMove:hover {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.movePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.moveOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(20, 16, 12, 0.5);
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  color: #d4ccc4;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.moveOption:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: #fff;
+}
+
+.moveOption svg {
+  width: 16px;
+  height: 16px;
+}
+
+.mobileEmpty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #64748b;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ========== SIDE PANEL ========== */
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.spSection {
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.spSection:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.spLeadHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.spAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(212, 175, 55, 0.3);
+}
+
+.spName {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.spContact {
+  font-size: 14px;
+  color: #B8A898;
+  line-height: 1.6;
+}
+
+.spSectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F5C563;
+  margin: 0 0 16px 0;
+}
+
+.spGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.spField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spFieldLabel {
+  font-size: 12px;
+  color: #B8A898;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spFieldValue {
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.spTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* Observacoes */
+.spObsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.spObsInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(20, 16, 12, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.spObsInput::placeholder {
+  color: #64748b;
+}
+
+.spObsInput:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.spObsBtn {
+  align-self: flex-end;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #D4AF37 0%, #B8962E 100%);
+  border: none;
+  border-radius: 8px;
+  color: #0A0807;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spObsBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.spObsBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spObsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spObsEmpty {
+  text-align: center;
+  padding: 24px;
+  color: #64748b;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.spObsItem {
+  padding: 14px 16px;
+  background: rgba(20, 16, 12, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.spObsItem:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.spObsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.spObsAutor {
+  font-size: 13px;
+  font-weight: 600;
+  color: #D4AF37;
+}
+
+.spObsDate {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.spObsText {
+  font-size: 14px;
+  color: #d4ccc4;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
   .container {
     padding: 24px;
@@ -431,7 +857,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container {
     padding: 16px;
   }
@@ -445,16 +871,19 @@
   }
 
   .statsGrid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 
-  .kanbanColumn {
-    min-width: 260px;
-    max-width: 260px;
+  .statCard {
+    padding: 16px;
   }
 
-  .columnContent {
-    max-height: calc(100vh - 500px);
+  .kanbanBoard {
+    display: none;
+  }
+
+  .mobileView {
+    display: block;
   }
 }

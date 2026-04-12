@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
 import LoginPage from './pages/Login/LoginPage'
 import MainLayout from './layouts/MainLayout'
 import ClientesPage from './pages/Clientes/ClientesPage'
@@ -10,15 +11,20 @@ import PipelinePage from './pages/Pipeline/PipelinePage'
 import WhatsAppPage from './pages/WhatsApp/WhatsAppPage'
 import AutoAtendimentoPage from './pages/AutoAtendimento/AutoAtendimentoPage'
 import CadastroSucessoPage from './pages/AutoAtendimento/CadastroSucessoPage'
+import PoliticaPrivacidadePage from './pages/PoliticaPrivacidade/PoliticaPrivacidadePage'
+import LeadsPage from './pages/Leads/LeadsPage'
 
 const LeadCapturePage = lazy(() => import('./pages/LeadCapture/LeadCapturePage'))
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/imovel/alto-padrao" element={<Suspense fallback={null}><LeadCapturePage /></Suspense>} />
+
+        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidadePage />} />
 
         {/* Public Auto-Attendance Routes */}
         <Route path="/cadastro/:token" element={<AutoAtendimentoPage />} />
@@ -26,6 +32,7 @@ function App() {
 
         {/* Protected Routes with Layout */}
         <Route element={<MainLayout />}>
+          <Route path="/leads" element={<LeadsPage />} />
           <Route path="/clientes" element={<ClientesPage />} />
           <Route path="/imoveis" element={<ImoveisPage />} />
           <Route path="/projetos" element={<ProjetosPage />} />
@@ -38,6 +45,7 @@ function App() {
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   )
 }
 

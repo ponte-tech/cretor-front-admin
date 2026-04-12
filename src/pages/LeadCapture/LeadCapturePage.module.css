@@ -144,6 +144,7 @@
 
 /* ========== SUCCESS ========== */
 .successContainer {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -151,41 +152,129 @@
   justify-content: center;
   text-align: center;
   padding: 40px 24px;
-  gap: 24px;
-  max-width: 480px;
+  gap: 20px;
+  max-width: 520px;
   margin: 0 auto;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .successIcon {
-  width: 88px;
-  height: 88px;
+  width: 96px;
+  height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(212, 175, 55, 0.12);
+  border: 2px solid rgba(212, 175, 55, 0.3);
   border-radius: 50%;
-  animation: scaleIn 0.5s ease;
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes scaleIn {
   from { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); }
   to { transform: scale(1); opacity: 1; }
 }
 
+.successPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 96px;
+  height: 96px;
+  margin-top: -148px;
+  margin-left: -48px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  animation: pulse 2s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
 .successTitle {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.3;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.successName {
+  background: linear-gradient(135deg, #D4AF37, #F5C563);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .successText {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.8;
   color: var(--text-muted);
+  animation: fadeInUp 0.6s ease-out 0.35s both;
 }
 
 .successText strong {
-  color: var(--color-secondary);
+  color: #F5C563;
+}
+
+.successDivider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  border-radius: 2px;
+  animation: fadeInUp 0.6s ease-out 0.45s both;
+}
+
+.successSubtext {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+.whatsappButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 36px;
+  background: #25D366;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.whatsappButton:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
+}
+
+.whatsappButton:active {
+  transform: translateY(0);
+}
+
+.whatsappNumber {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  animation: fadeInUp 0.6s ease-out 0.65s both;
 }
 
 .successBadge {
@@ -193,12 +282,60 @@
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 100px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--color-secondary);
+  margin-top: 8px;
+  animation: fadeInUp 0.6s ease-out 0.75s both;
+}
+
+/* ========== CONFETTI ========== */
+.confettiWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confettiFall 3s ease-out forwards;
+}
+
+.confetti:nth-child(1) { left: 10%; background: #D4AF37; animation-delay: 0s; }
+.confetti:nth-child(2) { left: 25%; background: #F5C563; animation-delay: 0.15s; width: 6px; height: 12px; }
+.confetti:nth-child(3) { left: 40%; background: #D4AF37; animation-delay: 0.3s; }
+.confetti:nth-child(4) { left: 55%; background: #F5C563; animation-delay: 0.1s; width: 10px; height: 6px; }
+.confetti:nth-child(5) { left: 70%; background: #D4AF37; animation-delay: 0.25s; }
+.confetti:nth-child(6) { left: 85%; background: #F5C563; animation-delay: 0.05s; width: 6px; height: 10px; }
+.confetti:nth-child(7) { left: 15%; background: #c9a430; animation-delay: 0.2s; width: 7px; height: 7px; }
+.confetti:nth-child(8) { left: 60%; background: #e8be4a; animation-delay: 0.35s; }
+
+@keyframes confettiFall {
+  0% {
+    top: -10px;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+    transform: rotate(720deg) scale(0.3);
+  }
 }
 
 /* ========== RESPONSIVE ========== */
@@ -284,12 +421,19 @@
 
   .successContainer {
     padding: 32px 20px;
-    gap: 20px;
+    gap: 16px;
   }
 
   .successIcon {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .successPulse {
+    width: 80px;
+    height: 80px;
+    margin-top: -132px;
+    margin-left: -40px;
   }
 
   .successTitle {
@@ -300,8 +444,13 @@
     font-size: 14px;
   }
 
+  .whatsappButton {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
   .successBadge {
-    font-size: 13px;
+    font-size: 12px;
     padding: 10px 20px;
   }
 }
@@ -324,5 +473,11 @@
 
   .successTitle {
     font-size: 20px;
+  }
+
+  .whatsappButton {
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
   }
 }

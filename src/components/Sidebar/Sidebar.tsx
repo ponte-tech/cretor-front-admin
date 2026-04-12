@@ -12,6 +12,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const menuItems = [
     {
+      name: 'Leads',
+      path: '/leads',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 7H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M4 11H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M16 7H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M16 11H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M12 17V17.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      )
+    },
+    {
       name: 'Clientes',
       path: '/clientes',
       icon: (
