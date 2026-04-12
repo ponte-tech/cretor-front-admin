@@ -156,6 +156,12 @@ export const pipelineApi = {
     api<{ message: string }>(`/pipeline/${id}`, { method: 'DELETE', auth: true }),
 }
 
+// Email API
+export const emailApi = {
+  send: (data: { to: string; subject: string; body: string; attachment?: string; file_name?: string }) =>
+    api<{ message: string }>('/email/send', { method: 'POST', body: data, auth: true }),
+}
+
 // Observacao types
 export interface ObservacaoResponse {
   id: string

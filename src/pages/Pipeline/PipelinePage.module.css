@@ -647,6 +647,36 @@
   font-style: italic;
 }
 
+/* Side Panel Tabs */
+.spTabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.spTab {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #B8A898;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spTab:hover {
+  color: #F5C563;
+}
+
+.spTabActive {
+  color: #F5C563;
+  border-bottom-color: #D4AF37;
+}
+
 /* ========== SIDE PANEL ========== */
 .sidePanel {
   display: flex;

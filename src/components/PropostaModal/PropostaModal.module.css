@@ -160,6 +160,123 @@
   border-top: 2px solid rgba(212, 175, 55, 0.3);
 }
 
+/* Internal Tabs */
+.internalTabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.internalTab {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #B8A898;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.internalTab:hover {
+  color: #F5C563;
+}
+
+.internalTabActive {
+  color: #F5C563;
+  border-bottom-color: #D4AF37;
+}
+
+/* Email Button */
+.emailButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.emailButton:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Email Form */
+.textareaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.textareaLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #B8A898;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(20, 16, 12, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 220px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  border-color: #D4AF37;
+}
+
+.emailAttachment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 8px;
+  color: #D4AF37;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.emailActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.emailSuccess {
+  padding: 12px 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  color: #10b981;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .row, .row3 {
     grid-template-columns: 1fr;

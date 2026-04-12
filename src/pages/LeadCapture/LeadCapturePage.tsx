@@ -219,7 +219,7 @@ export default function LeadCapturePage() {
             decoding="async"
             fetchpriority="high"
           />
-          <span className={styles.badge}>Condições Exclusivas</span>
+          <span className={styles.badge}>Venda Direto com a Construtora</span>
           <p className={styles.subtitle}>Preencha abaixo e um consultor entrará em contato pelo WhatsApp</p>
         </div>
 

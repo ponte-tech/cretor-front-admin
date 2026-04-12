@@ -4,6 +4,8 @@ import Modal from '../../components/Modal/Modal'
 import Button from '../../components/Button/Button'
 import DeleteConfirmDialog from '../../components/DeleteConfirmDialog/DeleteConfirmDialog'
 import LeadForm from './LeadForm'
+import PropostaForm from '../../components/PropostaModal/PropostaForm'
+import { useAuth } from '../../contexts/AuthContext'
 import { leadsApi, LeadResponse } from '../../services/api'
 import styles from './LeadsPage.module.css'
 
@@ -53,6 +55,7 @@ const PAGAMENTO_LABELS: Record<string, string> = {
 }
 
 export default function LeadsPage() {
+  const { usuario } = useAuth()
   const [leads, setLeads] = useState<LeadResponse[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -61,6 +64,8 @@ export default function LeadsPage() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const [leadToDelete, setLeadToDelete] = useState<LeadResponse | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [modalTab, setModalTab] = useState<'dados' | 'proposta' | 'email'>('dados')
+  const [emailTabReady, setEmailTabReady] = useState(false)
 
   const fetchLeads = async () => {
     setIsLoading(true)
@@ -80,11 +85,15 @@ export default function LeadsPage() {
 
   const handleAddLead = () => {
     setSelectedLead(null)
+    setModalTab('dados')
+    setEmailTabReady(false)
     setIsModalOpen(true)
   }
 
   const handleEditLead = (lead: LeadResponse) => {
     setSelectedLead(lead)
+    setModalTab('dados')
+    setEmailTabReady(false)
     setIsModalOpen(true)
   }
 
@@ -380,13 +389,52 @@ export default function LeadsPage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={selectedLead ? 'Editar Lead' : 'Novo Lead'}
-        size="medium"
+        size={selectedLead && (modalTab === 'proposta' || modalTab === 'email') ? 'xlarge' : 'medium'}
       >
-        <LeadForm
-          initialData={selectedLead || undefined}
-          onSave={handleSaveLead}
-          onCancel={() => setIsModalOpen(false)}
-        />
+        {selectedLead && (
+          <div className={styles.modalTabs}>
+            <button
+              className={`${styles.modalTab} ${modalTab === 'dados' ? styles.modalTabActive : ''}`}
+              onClick={() => setModalTab('dados')}
+            >
+              Dados
+            </button>
+            <button
+              className={`${styles.modalTab} ${modalTab === 'proposta' ? styles.modalTabActive : ''}`}
+              onClick={() => setModalTab('proposta')}
+            >
+              Proposta
+            </button>
+            {emailTabReady && (
+              <button
+                className={`${styles.modalTab} ${modalTab === 'email' ? styles.modalTabActive : ''}`}
+                onClick={() => setModalTab('email')}
+              >
+                Email
+              </button>
+            )}
+          </div>
+        )}
+
+        {modalTab === 'dados' ? (
+          <LeadForm
+            initialData={selectedLead || undefined}
+            onSave={handleSaveLead}
+            onCancel={() => setIsModalOpen(false)}
+          />
+        ) : (
+          <PropostaForm
+            initialData={{
+              nomeCliente: selectedLead?.nome || '',
+              emailCliente: selectedLead?.email || '',
+              nomeCorretor: usuario?.nome || '',
+              imobiliaria: 'DK Investimento Imobiliários',
+            }}
+            view={modalTab === 'email' ? 'email' : 'form'}
+            onEmailReady={(ready) => setEmailTabReady(ready)}
+            onViewChange={(v) => setModalTab(v === 'email' ? 'email' : 'proposta')}
+          />
+        )}
       </Modal>
 
       <DeleteConfirmDialog

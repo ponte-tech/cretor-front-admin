@@ -227,7 +227,9 @@ export function gerarPropostaPDF(data: PropostaData) {
   doc.setTextColor(30, 30, 30)
   doc.text(formatBRL(totalValorizacao), cardX + cardW / 2, card2Y + 22, { align: 'center' })
 
-  // Save
+  // Save and return blob
   const fileName = `Proposta - ${data.imobiliaria || 'Imobiliaria'} - ${data.nomeCliente}.pdf`
   doc.save(fileName)
+
+  return { blob: doc.output('blob'), fileName }
 }

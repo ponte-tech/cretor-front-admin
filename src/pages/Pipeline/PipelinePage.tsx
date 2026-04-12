@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { NegocioPipeline, EtapaPipeline, EtapaConfig } from '../../types/pipeline'
+import { useAuth } from '../../contexts/AuthContext'
 import { pipelineApi, NegocioResponse, observacoesApi, ObservacaoResponse } from '../../services/api'
 import Modal from '../../components/Modal/Modal'
+import PropostaForm from '../../components/PropostaModal/PropostaForm'
 import styles from './PipelinePage.module.css'
 
 const MAN_AVATARS = ['3','5','8','11','12','13','17','19','22','24','26','29','31','33','34','36','37','42','43','46','49','53','54','55','59','64','65']
@@ -75,6 +77,7 @@ function mapApiToNegocio(n: NegocioResponse): NegocioPipeline {
 }
 
 export default function PipelinePage() {
+  const { usuario } = useAuth()
   const [negocios, setNegocios] = useState<NegocioPipeline[]>([])
   const [draggedItem, setDraggedItem] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<EtapaPipeline>('primeiro_contato')
@@ -84,6 +87,8 @@ export default function PipelinePage() {
   const [novaObservacao, setNovaObservacao] = useState('')
   const [loadingObs, setLoadingObs] = useState(false)
   const [sendingObs, setSendingObs] = useState(false)
+  const [panelTab, setPanelTab] = useState<'detalhes' | 'proposta' | 'email'>('detalhes')
+  const [emailTabReady, setEmailTabReady] = useState(false)
   const dragStartPos = useRef<{ x: number; y: number } | null>(null)
   const wasDragged = useRef(false)
 
@@ -205,6 +210,8 @@ export default function PipelinePage() {
 
   const openSidePanel = (negocio: NegocioPipeline) => {
     setSelectedNegocio(negocio)
+    setPanelTab('detalhes')
+    setEmailTabReady(false)
     setNovaObservacao('')
     setLoadingObs(true)
     observacoesApi.list(negocio.id).then(setObservacoes).catch(console.error).finally(() => setLoadingObs(false))
@@ -550,10 +557,48 @@ export default function PipelinePage() {
         isOpen={!!selectedNegocio}
         onClose={() => setSelectedNegocio(null)}
         title="Detalhes do Lead"
-        size="large"
+        size={panelTab === 'proposta' || panelTab === 'email' ? 'xlarge' : 'large'}
       >
         {selectedNegocio && (
           <div className={styles.sidePanel}>
+            {/* Tabs */}
+            <div className={styles.spTabs}>
+              <button
+                className={`${styles.spTab} ${panelTab === 'detalhes' ? styles.spTabActive : ''}`}
+                onClick={() => setPanelTab('detalhes')}
+              >
+                Detalhes
+              </button>
+              <button
+                className={`${styles.spTab} ${panelTab === 'proposta' ? styles.spTabActive : ''}`}
+                onClick={() => setPanelTab('proposta')}
+              >
+                Proposta
+              </button>
+              {emailTabReady && (
+                <button
+                  className={`${styles.spTab} ${panelTab === 'email' ? styles.spTabActive : ''}`}
+                  onClick={() => setPanelTab('email')}
+                >
+                  Email
+                </button>
+              )}
+            </div>
+
+            {panelTab === 'proposta' || panelTab === 'email' ? (
+              <PropostaForm
+                initialData={{
+                  nomeCliente: selectedNegocio.clienteNome,
+                  emailCliente: selectedNegocio.clienteEmail,
+                  nomeCorretor: usuario?.nome || '',
+                  imobiliaria: 'DK Investimento Imobiliários',
+                }}
+                view={panelTab === 'email' ? 'email' : 'form'}
+                onEmailReady={(ready) => setEmailTabReady(ready)}
+                onViewChange={(v) => setPanelTab(v === 'email' ? 'email' : 'proposta')}
+              />
+            ) : (
+            <>
             {/* Lead Info */}
             <div className={styles.spSection}>
               <div className={styles.spLeadHeader}>
@@ -677,6 +722,8 @@ export default function PipelinePage() {
                 )}
               </div>
             </div>
+            </>
+            )}
           </div>
         )}
       </Modal>
