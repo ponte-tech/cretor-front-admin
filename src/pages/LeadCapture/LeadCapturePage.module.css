@@ -641,3 +641,60 @@
     width: 100%;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .page {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .page::before {
+  background: radial-gradient(ellipse at 50% 20%, rgba(184, 150, 11, 0.04) 0%, transparent 50%);
+}
+
+:global([data-theme="light"]) .form {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+:global([data-theme="light"]) .progressDot {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .progressDotActive {
+  background: rgba(184, 150, 11, 0.1);
+  border-color: #B8960B;
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .progressLabel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .progressLabelActive {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .progressLine {
+  background: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .stepTitle {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .stepSubtitle {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .backButton {
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .backButton:hover {
+  border-color: rgba(180, 160, 130, 0.4);
+  color: #B8960B;
+}

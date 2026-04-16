@@ -88,6 +88,50 @@
   }
 }
 
+/* Light theme */
+:global([data-theme="light"]) .tableContainer {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .table thead {
+  background: #f8f6f3;
+  border-bottom-color: #e5ddd4;
+}
+
+:global([data-theme="light"]) .table thead th {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .table tbody tr {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .table tbody tr:hover {
+  background: rgba(184, 150, 11, 0.03);
+}
+
+:global([data-theme="light"]) .table tbody tr.clickable:hover {
+  background: rgba(184, 150, 11, 0.06);
+}
+
+:global([data-theme="light"]) .table tbody td {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .loadingContainer,
+:global([data-theme="light"]) .emptyContainer {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spinner {
+  border-color: rgba(184, 150, 11, 0.15);
+  border-top-color: #B8960B;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .table thead th,

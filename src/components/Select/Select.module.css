@@ -254,3 +254,74 @@
     right: 12px;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .control {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .control:hover {
+  border-color: rgba(180, 160, 130, 0.4);
+}
+
+:global([data-theme="light"]) .control:focus-visible,
+:global([data-theme="light"]) .control.open {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.12);
+}
+
+:global([data-theme="light"]) .label {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .label.labelFloating {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .value {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .arrow {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .arrow.arrowOpen {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .dropdown {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .dropdown::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 130, 0.5);
+}
+
+:global([data-theme="light"]) .option {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .option.optionHighlighted {
+  background: rgba(184, 150, 11, 0.04);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .option.optionSelected {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .option.optionSelected.optionHighlighted {
+  background: rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .checkIcon {
+  color: #B8960B;
+}

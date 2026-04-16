@@ -568,3 +568,145 @@
     border-radius: 16px;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .title {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .clienteInfo {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.06) 0%, rgba(184, 150, 11, 0.02) 100%);
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .clienteAvatar {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .clienteDetails h3 {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .clienteDetails p {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .tabs {
+  border-bottom-color: #e5ddd4;
+}
+
+:global([data-theme="light"]) .tab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .tab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .tabActive {
+  color: #B8960B;
+  border-bottom-color: #B8960B;
+}
+
+:global([data-theme="light"]) .matchCard {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .matchCard:hover {
+  border-color: rgba(180, 160, 130, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .matchCardImage {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.06) 0%, rgba(184, 150, 11, 0.02) 100%);
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .matchCardDetails h3 {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .matchCardAddress {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .matchCardFeatures {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .matchCardPrice {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .scoreProbabilidade {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .thermometerBar {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .matchCardActions {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .actionButton {
+  background: rgba(184, 150, 11, 0.06);
+  color: #B8960B;
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .actionButton:hover {
+  background: rgba(184, 150, 11, 0.1);
+  border-color: rgba(180, 160, 130, 0.4);
+}
+
+:global([data-theme="light"]) .matchDetails h4 {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .matchDetails {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .criteriaItem {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.12);
+}
+
+:global([data-theme="light"]) .criteriaName {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .criteriaWeight span {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .criteriaWeightBar {
+  background: #f0ede8;
+}
+
+:global([data-theme="light"]) .caracteristicaTag {
+  background: rgba(184, 150, 11, 0.06);
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .emptyState p {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .detailsButton {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .detailsButton:hover {
+  color: #D4AF37;
+}

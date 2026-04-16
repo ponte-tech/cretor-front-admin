@@ -326,3 +326,115 @@
     display: block;
   }
 }
+
+/* =============================================
+   LIGHT THEME OVERRIDES
+   ============================================= */
+
+:global([data-theme="light"]) .title {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #6a5e52;
+}
+
+:global([data-theme="light"]) .searchInput {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .searchInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .searchInput:focus {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .searchIcon {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .clearButton {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .clearButton:hover {
+  color: #B8960B;
+  background: rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .actionButton {
+  border-color: #e5ddd4;
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .actionButton:hover {
+  background: rgba(184, 150, 11, 0.06);
+  border-color: rgba(184, 150, 11, 0.3);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .modalTabs {
+  border-bottom-color: #e5ddd4;
+}
+
+:global([data-theme="light"]) .modalTab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .modalTab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .modalTabActive {
+  color: #B8960B;
+  border-bottom-color: #B8960B;
+}
+
+/* Mobile cards */
+:global([data-theme="light"]) .card {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .cardNome {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .cardEmail {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .cardMeta {
+  color: #6a5e52;
+}
+
+:global([data-theme="light"]) .cardBottom {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .cardAction {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .cardAction:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .cardAction:not(:last-child) {
+  border-right-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .cardAvatar {
+  border-color: rgba(184, 150, 11, 0.2);
+}
+
+:global([data-theme="light"]) .mobileLoading,
+:global([data-theme="light"]) .mobileEmpty {
+  color: #8a7e72;
+}

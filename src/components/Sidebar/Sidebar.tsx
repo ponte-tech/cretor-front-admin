@@ -1,5 +1,6 @@
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import styles from './Sidebar.module.css'
 
 interface SidebarProps {
@@ -13,6 +14,7 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
   const navigate = useNavigate()
   const location = useLocation()
   const { usuario, logout } = useAuth()
+  const { theme } = useTheme()
 
   const menuItems = [
     {
@@ -133,8 +135,8 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
           <div className={styles.logo}>
             {!collapsed && (
               <img
-                src="/HORIZONTAL BRANCO SEM FUNDO.png"
-                alt="Cretor"
+                src={theme === 'light' ? '/assets/img-ligth/logo-preto.png' : '/HORIZONTAL BRANCO SEM FUNDO.png'}
+                alt="Daniel Krammes"
                 className={styles.logoImage}
               />
             )}

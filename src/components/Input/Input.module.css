@@ -131,3 +131,30 @@
     font-size: 13px;
   }
 }
+
+/* Light theme */
+:global([data-theme="light"]) .inputContainer {
+  background: linear-gradient(180deg, rgba(248, 246, 243, 0.8) 0%, rgba(240, 237, 232, 0.9) 100%);
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .inputContainer:focus-within {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.1);
+}
+
+:global([data-theme="light"]) .floatingLabel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .floatingLabel.floating {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .input {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .iconWrapper {
+  color: #8a7e72;
+}

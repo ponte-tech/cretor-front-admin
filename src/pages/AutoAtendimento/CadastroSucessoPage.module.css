@@ -234,3 +234,57 @@
     text-align: center;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .container {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .background::after {
+  background: linear-gradient(
+    to right,
+    rgba(244, 242, 239, 0.3) 0%,
+    rgba(244, 242, 239, 0.7) 50%,
+    rgba(244, 242, 239, 0.95) 100%
+  );
+}
+
+:global([data-theme="light"]) .card {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08),
+              0 0 80px rgba(184, 150, 11, 0.04);
+}
+
+:global([data-theme="light"]) .title {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .description {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .infoBox {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .infoBox strong {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .infoBox p {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .feature h3 {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .feature p {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .footer {
+  color: #8a7e72;
+}

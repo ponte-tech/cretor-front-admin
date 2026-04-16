@@ -282,3 +282,94 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .sectionTitle {
+  color: #B8960B;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .fluxoTable th {
+  color: #8a7e72;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .fluxoTable input {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .fluxoTable input:focus {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .fluxoTable input::placeholder {
+  color: rgba(138, 126, 114, 0.5);
+}
+
+:global([data-theme="light"]) .addRowButton {
+  border-color: rgba(180, 160, 130, 0.3);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .addRowButton:hover {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.5);
+}
+
+:global([data-theme="light"]) .footer {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .cancelButton {
+  background: rgba(184, 150, 11, 0.06);
+  color: #B8960B;
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .cancelButton:hover {
+  background: rgba(184, 150, 11, 0.1);
+}
+
+:global([data-theme="light"]) .totalRow {
+  color: #B8960B;
+  border-top-color: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .internalTabs {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .internalTab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .internalTab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .internalTabActive {
+  color: #B8960B;
+  border-bottom-color: #B8960B;
+}
+
+:global([data-theme="light"]) .textareaLabel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .textarea {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .textarea:focus {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .emailAttachment {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.15);
+  color: #B8960B;
+}

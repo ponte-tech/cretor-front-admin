@@ -917,3 +917,347 @@
     display: block;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .container {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .title {
+  color: #1a1510;
+  background: linear-gradient(135deg, #1a1510 0%, #B8960B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #8a7e72;
+}
+
+/* Stats */
+:global([data-theme="light"]) .statCard {
+  background: #ffffff;
+  border-color: #e5ddd4;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .statCard:hover {
+  border-color: rgba(180, 160, 130, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .statValue {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .statLabel {
+  color: #8a7e72;
+}
+
+/* Kanban Board */
+:global([data-theme="light"]) .kanbanBoard::-webkit-scrollbar-track {
+  background: rgba(180, 160, 130, 0.1);
+}
+
+:global([data-theme="light"]) .kanbanBoard::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .kanbanBoard::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 130, 0.5);
+}
+
+:global([data-theme="light"]) .kanbanColumn {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(180, 160, 130, 0.12);
+}
+
+:global([data-theme="light"]) .kanbanColumn:hover {
+  border-color: rgba(180, 160, 130, 0.25);
+}
+
+:global([data-theme="light"]) .columnHeader {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+:global([data-theme="light"]) .columnTitle {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .columnCount {
+  background: rgba(184, 150, 11, 0.1);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .columnValue {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .columnContent::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .columnContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 130, 0.35);
+}
+
+/* Negocio Card */
+:global([data-theme="light"]) .negocioCard {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .negocioCard:hover {
+  border-color: rgba(180, 160, 130, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .clienteAvatarPlaceholder {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.1) 0%, rgba(184, 150, 11, 0.05) 100%);
+  border-color: rgba(184, 150, 11, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .clienteAvatar {
+  border-color: rgba(184, 150, 11, 0.2);
+}
+
+:global([data-theme="light"]) .clienteNome {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .clienteContato {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .imovelInfo {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.12);
+}
+
+:global([data-theme="light"]) .imovelFoto {
+  border-color: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .imovelTitulo {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .imovelEndereco {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .valorNegocio {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .probabilidadeLabel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .probabilidadeValue {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .progressBar {
+  background: rgba(184, 150, 11, 0.06);
+}
+
+:global([data-theme="light"]) .leadInfo {
+  border-top-color: #f0ede8;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .leadInfoItem {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .cardFooter {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .diasEtapa {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .proximaAcao {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .tag {
+  background: rgba(184, 150, 11, 0.08);
+  border-color: rgba(180, 160, 130, 0.15);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .emptyColumn {
+  color: #8a7e72;
+}
+
+/* Mobile View */
+:global([data-theme="light"]) .tabBar {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .tab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .tab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .tabActive {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .tabCount {
+  background: rgba(184, 150, 11, 0.1);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .mobileCard {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .mobileCardNome {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .mobileCardTel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .mobileCardMeta {
+  border-top-color: #f0ede8;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .mobileCardMetaItem {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .mobileCardTime {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .mobileCardMove {
+  background: rgba(184, 150, 11, 0.06);
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .mobileCardMove:hover {
+  background: rgba(184, 150, 11, 0.1);
+}
+
+:global([data-theme="light"]) .movePicker {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .moveOption {
+  background: #f8f6f3;
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .moveOption:hover {
+  background: rgba(184, 150, 11, 0.04);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .mobileEmpty {
+  color: #8a7e72;
+}
+
+/* Side Panel */
+:global([data-theme="light"]) .spTabs {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .spTab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spTab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .spTabActive {
+  color: #B8960B;
+  border-bottom-color: #B8960B;
+}
+
+:global([data-theme="light"]) .spSection {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .spAvatar {
+  border-color: rgba(184, 150, 11, 0.2);
+}
+
+:global([data-theme="light"]) .spName {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .spContact {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spSectionTitle {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .spFieldLabel {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spFieldValue {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .spObsInput {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .spObsInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spObsInput:focus {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .spObsEmpty {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spObsItem {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.12);
+}
+
+:global([data-theme="light"]) .spObsItem:hover {
+  border-color: rgba(180, 160, 130, 0.25);
+}
+
+:global([data-theme="light"]) .spObsAutor {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .spObsDate {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .spObsText {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .mobileCardAvatar {
+  border-color: rgba(184, 150, 11, 0.2);
+}

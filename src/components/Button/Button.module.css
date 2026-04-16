@@ -78,3 +78,13 @@
     font-size: 14px;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .outline {
+  color: #B8960B;
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .outline:hover:not(:disabled) {
+  background: rgba(184, 150, 11, 0.06);
+}

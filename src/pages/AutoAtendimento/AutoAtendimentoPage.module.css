@@ -393,3 +393,112 @@
     width: 100%;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .container {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .background::after {
+  background: linear-gradient(
+    to right,
+    rgba(244, 242, 239, 0.3) 0%,
+    rgba(244, 242, 239, 0.7) 50%,
+    rgba(244, 242, 239, 0.95) 100%
+  );
+}
+
+:global([data-theme="light"]) .card {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08),
+              0 0 80px rgba(184, 150, 11, 0.04);
+}
+
+:global([data-theme="light"]) .progressDot {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .progressStepActive .progressDot {
+  box-shadow: 0 0 20px rgba(184, 150, 11, 0.2);
+}
+
+:global([data-theme="light"]) .progressStepCompleted .progressDot {
+  background: rgba(184, 150, 11, 0.1);
+  border-color: #B8960B;
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .progressLine {
+  background: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .stepTitle {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .stepDescription {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .subsectionTitle {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .checkbox {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .checkbox:hover {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .checkbox span {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .checkboxCard {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .checkboxCard:hover {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+:global([data-theme="light"]) .checkboxCard span {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .checkboxCard input[type='checkbox']:checked + span {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .textarea {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .textarea::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .textarea:focus {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .formActions {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .footer {
+  color: #8a7e72;
+}

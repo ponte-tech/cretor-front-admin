@@ -697,3 +697,219 @@
     max-width: 80%;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .container {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .conversasPanel {
+  background: #ffffff;
+  border-right-color: #e5ddd4;
+}
+
+:global([data-theme="light"]) .conversasHeader {
+  background: #ffffff;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .conversasTitle {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .actionBtn {
+  background: rgba(184, 150, 11, 0.06);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .actionBtn:hover {
+  background: rgba(184, 150, 11, 0.12);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .buscaWrapper {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .buscaWrapper:focus-within {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .buscaWrapper svg {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .buscaInput {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .buscaInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .conversasList::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .conversaItem {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .conversaItem:hover {
+  background: rgba(184, 150, 11, 0.04);
+}
+
+:global([data-theme="light"]) .conversaAtiva {
+  background: rgba(184, 150, 11, 0.06);
+  border-left-color: #B8960B;
+}
+
+:global([data-theme="light"]) .conversaAvatar {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.12) 0%, rgba(184, 150, 11, 0.06) 100%);
+  border-color: rgba(184, 150, 11, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .onlineIndicator {
+  border-color: #ffffff;
+}
+
+:global([data-theme="light"]) .conversaNome {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .conversaHorario {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .conversaPreview {
+  color: #8a7e72;
+}
+
+/* Chat Panel */
+:global([data-theme="light"]) .chatHeader {
+  background: #ffffff;
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .chatAvatar {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.12) 0%, rgba(184, 150, 11, 0.06) 100%);
+  border-color: rgba(184, 150, 11, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .chatNome {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .idiomaSeletor {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .idiomaIcon {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .idiomaBtn {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .idiomaBtn:hover {
+  color: #B8960B;
+  background: rgba(184, 150, 11, 0.06);
+}
+
+/* Messages */
+:global([data-theme="light"]) .mensagensArea {
+  background: linear-gradient(180deg, #f8f6f3 0%, #f4f2ef 100%);
+}
+
+:global([data-theme="light"]) .mensagensArea::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .balaoEu {
+  background: rgba(184, 150, 11, 0.08);
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .balaoContato {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.12);
+}
+
+:global([data-theme="light"]) .mensagemTexto {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .mensagemHorario {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .transcricaoBloco {
+  background: rgba(184, 150, 11, 0.04);
+  border-left-color: rgba(184, 150, 11, 0.2);
+}
+
+:global([data-theme="light"]) .transcricaoTexto {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .traducaoTexto {
+  color: #3b6fb5;
+}
+
+/* Input */
+:global([data-theme="light"]) .inputArea {
+  background: #ffffff;
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .inputWrapper {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .inputWrapper:focus-within {
+  border-color: #B8960B;
+}
+
+:global([data-theme="light"]) .mensagemInput {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .mensagemInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .gravandoTempo {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .audioDuracao {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .audioBar {
+  background: rgba(184, 150, 11, 0.35);
+}
+
+:global([data-theme="light"]) .playBtn {
+  background: rgba(184, 150, 11, 0.12);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .playBtn:hover {
+  background: rgba(184, 150, 11, 0.2);
+}
+
+/* Empty */
+:global([data-theme="light"]) .emptyChatContent h3 {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .emptyChatContent p {
+  color: #8a7e72;
+}

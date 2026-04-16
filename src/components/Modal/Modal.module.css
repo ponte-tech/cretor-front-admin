@@ -138,3 +138,43 @@
     padding: 24px 16px;
   }
 }
+
+/* Light theme */
+:global([data-theme="light"]) .overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="light"]) .modal {
+  background: #ffffff;
+  border-left-color: #e5ddd4;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+:global([data-theme="light"]) .header {
+  border-bottom-color: #e5ddd4;
+}
+
+:global([data-theme="light"]) .title {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .closeButton {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .closeButton:hover {
+  background: rgba(184, 150, 11, 0.06);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .content::-webkit-scrollbar-track {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .content::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .content::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 130, 0.5);
+}

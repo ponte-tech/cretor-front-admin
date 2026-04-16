@@ -200,3 +200,70 @@
     width: 100%;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .tabs {
+  border-bottom-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .tab {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .tab:hover {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .activeTab {
+  color: #B8960B;
+  border-bottom-color: #B8960B;
+}
+
+:global([data-theme="light"]) .sectionTitle {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .checkbox {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.15);
+}
+
+:global([data-theme="light"]) .checkbox:hover {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.3);
+}
+
+:global([data-theme="light"]) .checkbox span {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .textarea {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .textarea::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .textarea:focus {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .formActions {
+  border-top-color: #f0ede8;
+}
+
+:global([data-theme="light"]) .formContent::-webkit-scrollbar-track {
+  background: rgba(180, 160, 130, 0.05);
+}
+
+:global([data-theme="light"]) .formContent::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .formContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 130, 0.35);
+}

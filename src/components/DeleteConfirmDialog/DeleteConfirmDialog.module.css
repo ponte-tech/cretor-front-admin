@@ -173,3 +173,35 @@
     padding: 18px;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+:global([data-theme="light"]) .modal {
+  background: #ffffff;
+  border-left-color: #e5ddd4;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+:global([data-theme="light"]) .title {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .itemName {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .confirmButton:disabled {
+  background: #e5ddd4;
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .cancelButton {
+  color: #B8960B;
+}

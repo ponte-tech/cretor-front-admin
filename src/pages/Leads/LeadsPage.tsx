@@ -175,8 +175,8 @@ export default function LeadsPage() {
             }}
           />
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            <span style={{ fontWeight: '600', color: '#FFFFFF' }}>{lead.nome}</span>
-            <span style={{ fontSize: '12px', color: '#B8A898' }}>{lead.email}</span>
+            <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{lead.nome}</span>
+            <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{lead.email}</span>
           </div>
         </div>
       ),
@@ -191,7 +191,7 @@ export default function LeadsPage() {
       header: 'Prazo',
       width: '140px',
       render: (lead) => (
-        <span style={{ fontSize: '13px', color: '#d4ccc4' }}>
+        <span style={{ fontSize: '13px', color: 'var(--text-body)' }}>
           {PRAZO_LABELS[lead.prazo] || lead.prazo}
         </span>
       ),
@@ -201,7 +201,7 @@ export default function LeadsPage() {
       header: 'Pagamento',
       width: '160px',
       render: (lead) => (
-        <span style={{ fontSize: '13px', color: '#d4ccc4' }}>
+        <span style={{ fontSize: '13px', color: 'var(--text-body)' }}>
           {PAGAMENTO_LABELS[lead.forma_pagamento] || lead.forma_pagamento}
         </span>
       ),
@@ -217,7 +217,7 @@ export default function LeadsPage() {
       header: 'Data',
       width: '100px',
       render: (lead) => (
-        <span style={{ fontSize: '12px', color: '#B8A898' }}>
+        <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
           {new Date(lead.created_at).toLocaleDateString('pt-BR')}
         </span>
       ),

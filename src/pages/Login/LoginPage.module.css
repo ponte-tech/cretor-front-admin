@@ -5,6 +5,43 @@
   width: 100%;
   background: #0a0604;
   overflow-x: hidden;
+  position: relative;
+}
+
+.themeToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(10, 6, 4, 0.5);
+  backdrop-filter: blur(8px);
+  color: #D4AF37;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.themeToggle:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: rotate(15deg);
+}
+
+:global([data-theme="light"]) .themeToggle {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .themeToggle:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(180, 160, 130, 0.3);
 }
 
 /* Left Side - Art Panel */
@@ -42,6 +79,16 @@
   top: 0;
   left: 0;
   opacity: 1;
+}
+
+.artImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .artOverlay {
@@ -534,4 +581,81 @@
   .forgotPassword {
     margin-top: 0;
   }
+}
+
+/* =============================================
+   LIGHT THEME OVERRIDES
+   ============================================= */
+
+:global([data-theme="light"]) .container {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .leftSide {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .leftSide::after {
+  background: linear-gradient(to right, transparent 0%, rgba(244, 242, 239, 0.3) 50%, rgba(244, 242, 239, 0.8) 100%);
+}
+
+:global([data-theme="light"]) .rightSide {
+  background: #f4f2ef;
+}
+
+:global([data-theme="light"]) .rightSide::before {
+  background-image:
+    linear-gradient(to right, rgba(244, 242, 239, 0.8) 0%, transparent 100px),
+    radial-gradient(circle at 20% 50%, rgba(184, 150, 11, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(184, 150, 11, 0.04) 0%, transparent 50%);
+}
+
+:global([data-theme="light"]) .formContainer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  border-color: rgba(180, 160, 130, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 40px rgba(184, 150, 11, 0.03);
+}
+
+:global([data-theme="light"]) .title {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #6a5e52;
+}
+
+:global([data-theme="light"]) .tagline {
+  color: rgba(26, 21, 16, 0.7);
+}
+
+:global([data-theme="light"]) .forgotPassword a {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .forgotPassword a:hover {
+  color: #9a7d09;
+}
+
+:global([data-theme="light"]) .divider::before,
+:global([data-theme="light"]) .divider::after {
+  background: linear-gradient(to right, transparent, rgba(180, 160, 130, 0.3), transparent);
+}
+
+:global([data-theme="light"]) .divider span {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .googleButton {
+  background: linear-gradient(180deg, rgba(248, 246, 243, 0.8) 0%, rgba(240, 237, 232, 0.9) 100%);
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .googleButton:hover {
+  border-color: #B8960B;
+  box-shadow: 0 4px 12px rgba(184, 150, 11, 0.15);
+}
+
+:global([data-theme="light"]) .privacyLink a {
+  color: #8a7e72;
 }

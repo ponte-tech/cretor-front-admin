@@ -238,3 +238,52 @@
     gap: 12px;
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .pageTitle {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .pageSubtitle {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .activityText {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .activityText strong {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .activityText span {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .activityTime {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .actionButton {
+  background: #ffffff;
+  border-color: rgba(180, 160, 130, 0.12);
+  color: #1a1510;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .actionButton:hover {
+  border-color: rgba(180, 160, 130, 0.3);
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .actionButton svg {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .actionTitle {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .actionDesc {
+  color: #8a7e72;
+}

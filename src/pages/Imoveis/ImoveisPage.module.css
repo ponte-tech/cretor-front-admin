@@ -137,3 +137,51 @@
     font-size: 16px !important; /* Prevent iOS zoom */
   }
 }
+
+/* ========== LIGHT THEME ========== */
+:global([data-theme="light"]) .title {
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .subtitle {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .searchInput {
+  background: #f8f6f3;
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .searchInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .searchInput:focus {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .searchIcon {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .clearButton {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .clearButton:hover {
+  color: #B8960B;
+  background: rgba(184, 150, 11, 0.06);
+}
+
+:global([data-theme="light"]) .actionButton {
+  border-color: rgba(180, 160, 130, 0.2);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .actionButton:hover {
+  background: rgba(184, 150, 11, 0.04);
+  border-color: rgba(180, 160, 130, 0.4);
+  color: #B8960B;
+}

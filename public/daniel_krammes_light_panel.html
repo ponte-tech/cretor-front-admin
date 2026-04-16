@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f4f2ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Animated border - left and right gold lines */
+  .frame {
+    display: none;
+  }
+
+  .border-line {
+    position: absolute;
+    z-index: 10;
+    background: linear-gradient(180deg, transparent, #D4AF37, #F5C563, #D4AF37, transparent);
+    opacity: 0.4;
+  }
+
+  .border-line.left {
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    animation: lineGlow 3s ease-in-out infinite;
+  }
+
+  .border-line.right {
+    right: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    animation: lineGlow 3s ease-in-out infinite 1.5s;
+  }
+
+  .border-line.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #D4AF37, #F5C563, #D4AF37, transparent);
+    animation: lineGlow 3s ease-in-out infinite 0.75s;
+  }
+
+  @keyframes lineGlow {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Image */
+  .photo-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 3px solid #D4AF37;
+  }
+
+  /* Bottom fade */
+  .photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, #f4f2ef 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Gold shine line animation */
+  .shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(212, 175, 55, 0.06) 30%,
+      rgba(245, 197, 99, 0.12) 50%,
+      rgba(212, 175, 55, 0.06) 70%,
+      transparent 100%
+    );
+    z-index: 3;
+    animation: shineMove 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shineMove {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* Floating gold particles */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #D4AF37;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 4;
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+  .particle:nth-child(2) { left: 80%; top: 30%; animation-delay: 1s; width: 3px; height: 3px; }
+  .particle:nth-child(3) { left: 20%; top: 70%; animation-delay: 2s; width: 5px; height: 5px; }
+  .particle:nth-child(4) { left: 70%; top: 60%; animation-delay: 0.5s; }
+  .particle:nth-child(5) { left: 50%; top: 15%; animation-delay: 3s; width: 3px; height: 3px; }
+  .particle:nth-child(6) { left: 90%; top: 80%; animation-delay: 1.5s; }
+
+  @keyframes float {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+    20% { opacity: 0.6; transform: translateY(-10px) scale(1); }
+    80% { opacity: 0.3; transform: translateY(-30px) scale(0.5); }
+  }
+
+  /* Name text */
+  .name {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+  }
+
+  .name h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1510;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .name p {
+    font-size: 12px;
+    color: #B8960B;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="border-line left"></div>
+    <div class="border-line right"></div>
+    <div class="border-line bottom"></div>
+    <div class="photo-wrap">
+      <img src="/assets/img-ligth/corretor.webp" alt="Daniel Krammes" class="photo" />
+      <div class="shine"></div>
+    </div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="name">
+      <h2>Daniel Krammes</h2>
+      <p>Gestor Imobiliário</p>
+    </div>
+  </div>
+</body>
+</html>
