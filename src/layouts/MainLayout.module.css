@@ -32,3 +32,9 @@
     margin-left: 0;
   }
 }
+
+/* ===== Light Theme Overrides ===== */
+
+:global([data-theme="light"]) .layout {
+  background: #f4f2ef;
+}

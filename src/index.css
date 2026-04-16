@@ -16,10 +16,36 @@
 
   --bg-dark: #0a0604;
   --bg-card: rgba(42, 35, 28, 0.9);
+  --bg-page: #0a0604;
+  --bg-surface: rgba(15, 12, 8, 0.98);
+  --bg-sidebar: rgba(12, 9, 6, 0.98);
+  --bg-input: rgba(10, 6, 4, 0.6);
   --text-primary: #FFFFFF;
   --text-secondary: #E2E8F0;
   --text-muted: #B8A898;
+  --text-heading: #fff;
+  --text-body: #c9bfb0;
   --border-color: #3d3225;
+  --border-subtle: rgba(212, 175, 55, 0.08);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+  --bg-dark: #f8f6f3;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-page: #f4f2ef;
+  --bg-surface: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-input: #f8f6f3;
+  --text-primary: #1a1510;
+  --text-secondary: #3a3530;
+  --text-muted: #8a7e72;
+  --text-heading: #1a1510;
+  --text-body: #4a4540;
+  --border-color: #e5ddd4;
+  --border-subtle: rgba(180, 160, 130, 0.12);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --color-primary: #B8960B;
 }
 
 html {
@@ -32,8 +58,9 @@ html {
 body {
   margin: 0;
   font-family: var(--font-primary);
-  background-color: #0a0604;
+  background-color: var(--bg-page);
   color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

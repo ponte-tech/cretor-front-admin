@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import LandingPage from './pages/Landing/LandingPage'
 import LoginPage from './pages/Login/LoginPage'
 import MainLayout from './layouts/MainLayout'
@@ -19,6 +20,7 @@ const LeadCapturePage = lazy(() => import('./pages/LeadCapture/LeadCapturePage')
 
 function App() {
   return (
+    <ThemeProvider>
     <AuthProvider>
     <BrowserRouter>
       <Routes>
@@ -48,6 +50,7 @@ function App() {
       </Routes>
     </BrowserRouter>
     </AuthProvider>
+    </ThemeProvider>
   )
 }
 

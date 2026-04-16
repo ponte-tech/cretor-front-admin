@@ -296,3 +296,105 @@
     gap: 6px;
   }
 }
+
+/* ===== Light Theme Overrides ===== */
+
+:global([data-theme="light"]) .header {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid #e5ddd4;
+}
+
+:global([data-theme="light"]) .menuButton {
+  background: rgba(184, 150, 11, 0.08);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .menuButton:hover {
+  background: rgba(184, 150, 11, 0.15);
+}
+
+:global([data-theme="light"]) .search {
+  background: #f8f6f3;
+  border: 1px solid rgba(180, 160, 130, 0.2);
+}
+
+:global([data-theme="light"]) .search:focus-within {
+  border-color: #B8960B;
+  box-shadow: 0 0 0 3px rgba(184, 150, 11, 0.1);
+}
+
+:global([data-theme="light"]) .search svg {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .searchInput {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .searchInput::placeholder {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .searchShortcut {
+  background: rgba(184, 150, 11, 0.08);
+  border: 1px solid rgba(180, 160, 130, 0.2);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .iconButton {
+  background: rgba(184, 150, 11, 0.06);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .iconButton:hover {
+  background: rgba(184, 150, 11, 0.12);
+}
+
+:global([data-theme="light"]) .badge {
+  border: 2px solid #ffffff;
+}
+
+:global([data-theme="light"]) .userButton {
+  background: rgba(184, 150, 11, 0.05);
+  border: 1px solid rgba(180, 160, 130, 0.2);
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .userButton:hover {
+  background: rgba(184, 150, 11, 0.1);
+  border-color: rgba(180, 160, 130, 0.35);
+}
+
+:global([data-theme="light"]) .userName {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .chevron {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .dropdown {
+  background: #ffffff;
+  border: 1px solid rgba(180, 160, 130, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+:global([data-theme="light"]) .dropdownName {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .dropdownEmail {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .dropdownDivider {
+  background: #e5ddd4;
+}
+
+:global([data-theme="light"]) .dropdownItem {
+  color: #ef4444;
+}
+
+:global([data-theme="light"]) .dropdownItem:hover {
+  background: rgba(239, 68, 68, 0.06);
+}

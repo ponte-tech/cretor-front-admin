@@ -275,3 +275,66 @@
     width: 280px;
   }
 }
+
+/* ===== Light Theme Overrides ===== */
+
+:global([data-theme="light"]) .overlay {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+:global([data-theme="light"]) .sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e5ddd4;
+}
+
+:global([data-theme="light"]) .collapseButton {
+  background: rgba(184, 150, 11, 0.06);
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .collapseButton:hover {
+  background: rgba(184, 150, 11, 0.14);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .navItem {
+  color: #4a4540;
+}
+
+:global([data-theme="light"]) .navItem:hover {
+  background: rgba(184, 150, 11, 0.08);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .navItem.active {
+  background: linear-gradient(135deg, rgba(184, 150, 11, 0.12) 0%, rgba(184, 150, 11, 0.06) 100%);
+  color: #B8960B;
+  box-shadow: 0 0 12px rgba(184, 150, 11, 0.08);
+}
+
+:global([data-theme="light"]) .comingSoon {
+  color: #8a7e72;
+  background: rgba(138, 126, 114, 0.1);
+}
+
+:global([data-theme="light"]) .userSection {
+  border-top: 1px solid #e5ddd4;
+  background: #f8f6f3;
+}
+
+:global([data-theme="light"]) .userName {
+  color: #1a1510;
+}
+
+:global([data-theme="light"]) .userEmail {
+  color: #8a7e72;
+}
+
+:global([data-theme="light"]) .logoutButton {
+  background: rgba(184, 150, 11, 0.08);
+  color: #B8960B;
+}
+
+:global([data-theme="light"]) .logoutButton:hover {
+  background: rgba(184, 150, 11, 0.16);
+}
