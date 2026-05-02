@@ -1,109 +1,44 @@
-# Cretor Front
+# Cretor Admin — CRM Platform
 
-Aplicação moderna de login desenvolvida com React, TypeScript e Vite.
+Internal CRM and lead management platform for Daniel Krammes Imoveis.
 
-## Características
+**Live:** https://adm.danielkrammes.com
 
-- **Design Moderno e Inovador**: Layout split-screen com arte interativa e formulário elegante
-- **Componentes Reutilizáveis**: Sistema de componentes modulares (Button, Input)
-- **Identidade Visual**: Inspirado no Magus CRM com cores vibrantes (#3E54FF, #17F8C7)
-- **Responsivo**: Otimizado para desktop, tablet e mobile
-- **Animações Suaves**: Transições e efeitos visuais modernos
-- **TypeScript**: Type-safety em toda aplicação
+## Overview
 
-## Stack Tecnológico
+Admin panel used by the internal sales team to manage leads, track the sales pipeline, generate proposals, and monitor campaign performance. Leads are captured from property landing pages and automatically entered into the pipeline.
 
-- React 18
-- TypeScript
-- Vite
-- React Router DOM
-- CSS Modules
+## Features
 
-## Instalação
+- **Lead Management** — View, search, filter, and manage leads with status tracking
+- **Sales Pipeline** — Kanban-style board with stages: First Contact, Qualified, Visit Scheduled, Proposal Sent, Negotiation
+- **Landing Pages** — Property-specific pages with lead capture forms, gallery, FAQ, and conversion tracking
+- **Proposal Generation** — PDF proposals with property details and payment conditions
+- **WhatsApp Integration** — Direct messaging to leads from the CRM
+- **Analytics** — GA4 + Meta Pixel event tracking with form field interaction monitoring
 
-```bash
-# Instalar dependências
-npm install
+## Tech Stack
 
-# Iniciar servidor de desenvolvimento
-npm run dev
+- **Framework:** React 18 + TypeScript
+- **Build Tool:** Vite
+- **Styling:** CSS Modules (dark theme with gold accents)
+- **Routing:** React Router v6
+- **Hosting:** AWS S3 + CloudFront
+- **CI/CD:** GitHub Actions (auto-deploy on push to main)
 
-# Build para produção
-npm run build
+## Property Landing Pages
 
-# Preview da build
-npm run preview
-```
+Each development gets a dedicated landing page (e.g., `/imovel/porto-belo`) with:
+- Hero section with lead capture form
+- Image gallery with lightbox
+- Floor plans, amenities, pricing conditions
+- FAQ section
+- Exit intent popup
+- Floating WhatsApp button
+- Google Ads + GA4 conversion tracking
 
-## Estrutura do Projeto
+## Related Repositories
 
-```
-cretor-front/
-├── src/
-│   ├── components/
-│   │   ├── Button/
-│   │   │   ├── Button.tsx
-│   │   │   └── Button.module.css
-│   │   └── Input/
-│   │       ├── Input.tsx
-│   │       └── Input.module.css
-│   ├── pages/
-│   │   └── Login/
-│   │       ├── LoginPage.tsx
-│   │       └── LoginPage.module.css
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── daniel_krammes_art_panel.html
-├── index.html
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-```
-
-## Funcionalidades da Página de Login
-
-### Layout
-- **Lado Esquerdo**: Arte interativa (daniel_krammes_art_panel.html) com overlay gradiente
-- **Lado Direito**: Formulário de login moderno com validação
-
-### Recursos
-- Validação de e-mail e senha em tempo real
-- Toggle de visualização de senha
-- Indicador visual de campo válido
-- Botões de login social (Google, Facebook, GitHub)
-- Link para recuperação de senha
-- Link para cadastro
-- Animações e transições suaves
-- Responsivo para todos os dispositivos
-
-## Paleta de Cores
-
-- **Primary**: #3E54FF (Azul vibrante)
-- **Secondary**: #17F8C7 (Cyan/Turquesa)
-- **Background**: #080716 (Escuro profundo)
-- **Success**: #0CD531
-- **Error**: #ED2E31
-- **Warning**: #F4B740
-
-## Desenvolvimento
-
-O projeto usa Vite para desenvolvimento rápido com Hot Module Replacement (HMR).
-
-```bash
-# Servidor de desenvolvimento roda na porta 3001
-npm run dev
-```
-
-## Build
-
-```bash
-# Cria build otimizada para produção
-npm run build
-
-# Output em /dist
-```
-
-## Licença
-
-Projeto privado - Ponte Tech
+- [cretor-front](https://github.com/ponte-tech/cretor-front) — Public website
+- [cretor-back](https://github.com/ponte-tech/cretor-back) — Backend API
+- [cretor-ads-automation](https://github.com/ponte-tech/cretor-ads-automation) — Ads automation CLI
