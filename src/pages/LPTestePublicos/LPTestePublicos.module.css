@@ -682,12 +682,12 @@
 
 .input:focus,
 .select:focus {
-  border-color: #D4AF37;
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
 }
 
 .inputError {
-  border-color: #D4AF37 !important;
+  border-color: #4CAF50 !important;
 }
 
 .select {
@@ -710,7 +710,7 @@
 
 .error {
   font-size: 12px;
-  color: #D4AF37;
+  color: #4CAF50;
   margin-top: 2px;
 }
 
@@ -728,7 +728,7 @@
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(229, 57, 53, 0.3);
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
   font-family: inherit;
   margin-top: 4px;
 }
@@ -736,7 +736,7 @@
 .submitBtn:hover {
   transform: translateY(-2px);
   background: #c9a430;
-  box-shadow: 0 6px 28px rgba(229, 57, 53, 0.5);
+  box-shadow: 0 6px 28px rgba(76, 175, 80, 0.5);
 }
 
 .submitBtn:active {
@@ -808,8 +808,8 @@
 }
 
 .simCardActive {
-  border-color: #D4AF37;
-  background: rgba(229, 57, 53, 0.08);
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.08);
 }
 
 .simCardTitle {
