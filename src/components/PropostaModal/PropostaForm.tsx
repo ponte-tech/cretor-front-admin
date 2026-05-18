@@ -22,7 +22,7 @@ export interface PropostaData {
   imobiliaria: string
   valorTabela: string
   fluxo: FluxoRow[]
-  valorizacaoPercent: string
+  mesesAteEntrega: string
 }
 
 export type PropostaInitialData = Partial<PropostaData> & { emailCliente?: string }
@@ -69,7 +69,7 @@ export default function PropostaForm({
     entregaUnidade: initialData.entregaUnidade || '',
     imobiliaria: initialData.imobiliaria || '',
     valorTabela: initialData.valorTabela || '',
-    valorizacaoPercent: initialData.valorizacaoPercent || '100',
+    mesesAteEntrega: initialData.mesesAteEntrega || '12',
     fluxo: initialData.fluxo && initialData.fluxo.length > 0
       ? initialData.fluxo
       : [
@@ -267,10 +267,10 @@ export default function PropostaForm({
                 placeholder="12.646.084,00"
               />
               <Input
-                label="Valorizacao ate entrega (%)"
-                value={data.valorizacaoPercent}
-                onChange={e => updateField('valorizacaoPercent', e.target.value)}
-                placeholder="100"
+                label="Meses até entrega"
+                value={data.mesesAteEntrega}
+                onChange={e => updateField('mesesAteEntrega', e.target.value.replace(/\D/g, ''))}
+                placeholder="12"
               />
             </div>
 

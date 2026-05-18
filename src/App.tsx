@@ -17,6 +17,8 @@ import PoliticaPrivacidadePage from './pages/PoliticaPrivacidade/PoliticaPrivaci
 import LeadsPage from './pages/Leads/LeadsPage'
 
 const LeadCapturePage = lazy(() => import('./pages/LeadCapture/LeadCapturePage'))
+const LPPortoBelo = lazy(() => import('./pages/LPPortoBelo/LPPortoBelo'))
+const LPTestePublicos = lazy(() => import('./pages/LPTestePublicos/LPTestePublicos'))
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/imovel/alto-padrao" element={<Suspense fallback={null}><LeadCapturePage /></Suspense>} />
+        <Route path="/imovel/porto-belo" element={<Suspense fallback={null}><LPPortoBelo /></Suspense>} />
+        <Route path="/imovel/porto-belo-v2" element={<Suspense fallback={null}><LPTestePublicos /></Suspense>} />
 
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidadePage />} />
 

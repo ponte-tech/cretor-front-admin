@@ -3,14 +3,13 @@ import Input from '../../components/Input/Input'
 import Select from '../../components/Select/Select'
 import Button from '../../components/Button/Button'
 import { leadsApi } from '../../services/api'
-import { trackPageView, trackLead, trackEvent } from '../../services/analytics'
+import { trackPageView, trackViewContent, trackLead, trackEvent } from '../../services/analytics'
 import { useFormTracking } from '../../hooks/useFormTracking'
 import styles from './LeadCapturePage.module.css'
 
 interface LeadFormData {
   nome: string
   whatsapp: string
-  email: string
   prazo: string
   formaPagamento: string
   website: string  // honeypot
@@ -30,13 +29,12 @@ const FORMAS_PAGAMENTO = [
   { value: 'nao-decidi', label: 'Ainda não decidi' },
 ]
 
-const FORM_FIELDS: (keyof LeadFormData)[] = ['nome', 'prazo', 'formaPagamento', 'whatsapp', 'email']
+const FORM_FIELDS: (keyof LeadFormData)[] = ['nome', 'prazo', 'formaPagamento', 'whatsapp']
 
 export default function LeadCapturePage() {
   const [formData, setFormData] = useState<LeadFormData>({
     nome: '',
     whatsapp: '',
-    email: '',
     prazo: '',
     formaPagamento: '',
     website: '',
@@ -47,6 +45,13 @@ export default function LeadCapturePage() {
 
   useEffect(() => {
     trackPageView('lead_alto_padrao')
+    trackViewContent({
+      content_name: 'Apartamento 2 Suítes Porto Belo',
+      content_category: 'imovel_alto_padrao',
+      content_type: 'product',
+      value: 1000000,
+      currency: 'BRL',
+    })
   }, [])
 
   const {
@@ -72,19 +77,12 @@ export default function LeadCapturePage() {
     return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`
   }
 
-  const formatEmail = (value: string) => {
-    return value.toLowerCase().replace(/\s/g, '')
-  }
-
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof LeadFormData, string>> = {}
 
     if (!formData.nome.trim()) newErrors.nome = 'Precisamos do seu nome para te atender melhor'
     if (!formData.whatsapp.trim() || formData.whatsapp.replace(/\D/g, '').length < 10) {
       newErrors.whatsapp = 'Informe seu WhatsApp para contato imediato'
-    }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Informe um e-mail válido para enviarmos os detalhes'
     }
     if (!formData.prazo) newErrors.prazo = 'Nos ajude a entender seu momento de compra'
     if (!formData.formaPagamento) newErrors.formaPagamento = 'Selecione a forma de pagamento desejada'
@@ -106,23 +104,31 @@ export default function LeadCapturePage() {
     setIsSubmitting(true)
 
     try {
-      await leadsApi.create({
+      const params = new URLSearchParams(window.location.search)
+      const utmSource = params.get('utm_source') || ''
+      const gclid = params.get('gclid') || ''
+      let origem = 'lp_alto_padrao'
+      if (gclid) origem = 'google_ads'
+      else if (utmSource === 'meta') origem = 'meta_ads_lp'
+      else if (utmSource) origem = `lp_${utmSource}`
+
+      const result = await leadsApi.create({
         nome: formData.nome,
         whatsapp: formData.whatsapp,
-        email: formData.email,
         prazo: formData.prazo,
         forma_pagamento: formData.formaPagamento,
         website: formData.website,
+        origem,
       })
       trackSubmitSuccess()
       trackLead({
         form_name: 'lead_alto_padrao',
         prazo: formData.prazo,
         forma_pagamento: formData.formaPagamento,
+        event_id: result.event_id,
       })
       setIsSuccess(true)
     } catch (error) {
-      console.error('Erro ao enviar lead:', error)
       trackSubmitError(error instanceof Error ? error.message : 'unknown')
       setErrors({ nome: 'Erro ao enviar. Tente novamente.' })
     } finally {
@@ -257,32 +263,19 @@ export default function LeadCapturePage() {
               error={errors.formaPagamento}
             />
 
-            <div className={styles.row}>
-              <Input
-                label="WhatsApp"
-                type="tel"
-                value={formData.whatsapp}
-                onChange={e => updateField('whatsapp', formatWhatsApp(e.target.value))}
-                onFocus={() => trackFieldFocus('whatsapp')}
-                onBlur={() => trackFieldBlur('whatsapp', formData.whatsapp.replace(/\D/g, '').length >= 10)}
-                error={errors.whatsapp}
-                autoComplete="tel"
-                placeholder="(11) 99999-9999"
-                inputMode="numeric"
-                maxLength={15}
-              />
-              <Input
-                label="E-mail"
-                type="email"
-                value={formData.email}
-                onChange={e => updateField('email', formatEmail(e.target.value))}
-                onFocus={() => trackFieldFocus('email')}
-                onBlur={() => trackFieldBlur('email', !!formData.email.trim())}
-                error={errors.email}
-                autoComplete="email"
-                inputMode="email"
-              />
-            </div>
+            <Input
+              label="WhatsApp"
+              type="tel"
+              value={formData.whatsapp}
+              onChange={e => updateField('whatsapp', formatWhatsApp(e.target.value))}
+              onFocus={() => trackFieldFocus('whatsapp')}
+              onBlur={() => trackFieldBlur('whatsapp', formData.whatsapp.replace(/\D/g, '').length >= 10)}
+              error={errors.whatsapp}
+              autoComplete="tel"
+              placeholder="(11) 99999-9999"
+              inputMode="numeric"
+              maxLength={15}
+            />
           </div>
 
           {/* Honeypot - invisible to humans, bots will fill it */}
@@ -335,6 +328,7 @@ export default function LeadCapturePage() {
           </div>
         </form>
       </div>
+      <span style={{ position: 'fixed', bottom: 4, right: 8, fontSize: 10, opacity: 0.3, color: '#888' }}>v1.0.0</span>
     </div>
   )
 }

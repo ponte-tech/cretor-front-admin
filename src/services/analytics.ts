@@ -10,6 +10,8 @@
 
 const GA4_ID = import.meta.env.VITE_GA4_ID || ''
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || ''
+const GADS_ID = 'AW-18133412978'
+const GADS_CONVERSION_LABEL = 'AW-18133412978/35EsCNerqqgcEPLY18ZD'
 
 declare global {
   interface Window {
@@ -34,6 +36,7 @@ function initGA4() {
 
   window.gtag('js', new Date())
   window.gtag('config', GA4_ID)
+  window.gtag('config', GADS_ID)
 
   const script = document.createElement('script')
   script.async = true
@@ -86,25 +89,45 @@ function metaCustomEvent(name: string, params?: Record<string, unknown>) {
 // ── API pública ──
 
 export function initAnalytics() {
-  console.log('[Analytics] Initializing... GA4:', GA4_ID || 'not set', '| Meta:', META_PIXEL_ID || 'not set')
   initGA4()
   initMetaPixel()
 }
 
 export function trackPageView(page: string) {
-  console.log('[Analytics] page_view:', page)
   ga4Event('page_view', { page_title: page, page_location: window.location.href })
   metaEvent('PageView')
 }
 
+export function trackViewContent(params?: Record<string, unknown>) {
+  ga4Event('view_item', params)
+  metaEvent('ViewContent', params)
+}
+
 export function trackEvent(name: string, params?: Record<string, unknown>) {
-  console.log(`[Analytics] ${name}:`, params)
   ga4Event(name, params)
   metaCustomEvent(name, params)
 }
 
 export function trackLead(params?: Record<string, unknown>) {
-  console.log('[Analytics] generate_lead:', params)
   ga4Event('generate_lead', params)
-  metaEvent('Lead', params)
+
+  // Google Ads conversion
+  if (window.gtag) {
+    window.gtag('event', 'conversion', {
+      send_to: GADS_CONVERSION_LABEL,
+      value: 1000000,
+      currency: 'BRL',
+    })
+  }
+
+  // Use event_id for deduplication with CAPI server-side events
+  const eventId = params?.event_id as string | undefined
+  const metaParams = { ...params }
+  delete metaParams.event_id
+
+  if (eventId && META_PIXEL_ID && window.fbq) {
+    window.fbq('track', 'Lead', metaParams, { eventID: eventId })
+  } else {
+    metaEvent('Lead', metaParams)
+  }
 }

@@ -13,5 +13,17 @@ export default defineConfig({
   },
   server: {
     port: 3002
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react-dom')) return 'react-vendor'
+          if (id.includes('node_modules/react-router')) return 'router'
+          if (id.includes('node_modules/html2canvas')) return 'html2canvas'
+          if (id.includes('node_modules/lucide-react')) return 'icons'
+        }
+      }
+    }
   }
 })

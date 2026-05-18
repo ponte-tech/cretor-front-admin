@@ -22,6 +22,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (saved === 'light' || saved === 'dark') {
       setTheme(saved)
       document.documentElement.setAttribute('data-theme', saved)
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [])
 

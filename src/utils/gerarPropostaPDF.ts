@@ -4,7 +4,7 @@ import { LOGO_BASE64 } from './logoBase64'
 
 function parseCurrencyValue(str: string): number {
   if (!str) return 0
-  const cleaned = str.replace(/[^\d,.-]/g, '').replace('.', '').replace(',', '.')
+  const cleaned = str.replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.')
   return parseFloat(cleaned) || 0
 }
 
@@ -157,8 +157,11 @@ export function gerarPropostaPDF(data: PropostaData) {
   // Calculate values
   const reducaoInvestimento = valorTabela - totalProposto
   const reducaoPercent = valorTabela > 0 ? ((reducaoInvestimento / valorTabela) * 100) : 0
-  const valorizacaoPercent = parseFloat(data.valorizacaoPercent) || 100
-  const totalValorizacao = totalProposto * (1 + valorizacaoPercent / 100)
+  const mesesAteEntrega = parseInt(data.mesesAteEntrega) || 12
+  const taxaAnual = 0.15
+  const valorizacaoPercent = taxaAnual * (mesesAteEntrega / 12) * 100
+  const valorBase = totalProposto // já com deságio aplicado
+  const totalValorizacao = valorBase + valorBase * taxaAnual * (mesesAteEntrega / 12)
 
   // Bar chart
   const chartX = marginL + 15
@@ -217,11 +220,11 @@ export function gerarPropostaPDF(data: PropostaData) {
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(16)
   doc.setTextColor(220, 120, 40)
-  doc.text(`${valorizacaoPercent}%`, cardX + cardW / 2, card2Y + 10, { align: 'center' })
+  doc.text(`${valorizacaoPercent.toFixed(1)}%`, cardX + cardW / 2, card2Y + 10, { align: 'center' })
   doc.setFont('helvetica', 'italic')
   doc.setFontSize(8)
   doc.setTextColor(120, 120, 120)
-  doc.text('Valorização até a entrega das chaves', cardX + cardW / 2, card2Y + 15, { align: 'center' })
+  doc.text(`Valorização (15% a.a. × ${mesesAteEntrega} meses)`, cardX + cardW / 2, card2Y + 15, { align: 'center' })
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(12)
   doc.setTextColor(30, 30, 30)
