@@ -835,7 +835,7 @@ export default function LPPortoBelo() {
             </div>
             <div className={styles.locationCard}>
               <span className={styles.locationDist}>30 min</span>
-              <span className={styles.locationName}>Bal. Camboriu</span>
+              <span className={styles.locationName}>Balneário Camboriú</span>
             </div>
             <div className={styles.locationCard}>
               <span className={styles.locationDist}>50 min</span>
